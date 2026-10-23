@@ -20151,7 +20151,9 @@ var HamaEngine = class _HamaEngine {
 };
 
 // node_modules/hama-js/dist/browser/engine.browser.js
-var assetUrl = (asset) => new URL(`./assets/${asset}`, import.meta.url).toString();
+var assetUrl = (asset) => 
+new URL(`./${asset}`, import.meta.url).toString()
+;
 async function loadWasm() {
   const res = await fetch(assetUrl("hama.wasm"));
   return new Uint8Array(await res.arrayBuffer());
