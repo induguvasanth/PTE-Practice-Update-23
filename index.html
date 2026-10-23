@@ -1,0 +1,152 @@
+<!doctype html><html><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>PTE Academic Practice</title><style>
+:root{--bg:#f5f7fb;--surface:#fff;--ink:#111827;--muted:#667085;--line:#e6eaf0;--brand:#4f46e5;--brand2:#7c3aed;--soft:#f0efff;--good:#0f9f72;--warn:#b7791f;--shadow:0 14px 40px rgba(16,24,40,.07)}
+*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:var(--bg);color:var(--ink);font-family:Inter,ui-sans-serif,system-ui,-apple-system,"Segoe UI",Arial,sans-serif}button,a,input,textarea,select{font:inherit}button{cursor:pointer}.appbar{height:64px;background:rgba(255,255,255,.94);backdrop-filter:blur(14px);border-bottom:1px solid var(--line);display:flex;align-items:center;justify-content:space-between;padding:0 28px;position:sticky;top:0;z-index:20}.brand{display:flex;align-items:center;gap:11px;font-weight:900;letter-spacing:-.02em}.brandmark{width:38px;height:38px;border-radius:12px;background:linear-gradient(135deg,var(--brand),var(--brand2));color:#fff;display:grid;place-items:center;box-shadow:0 8px 20px rgba(79,70,229,.22)}.top-actions{display:flex;gap:8px}.btn{border:0;border-radius:11px;padding:10px 14px;font-weight:800;font-size:12px}.btn.primary{color:#fff;background:linear-gradient(135deg,var(--brand),var(--brand2));box-shadow:0 7px 18px rgba(79,70,229,.18)}.btn.secondary{background:#fff;border:1px solid var(--line);color:#344054}.shell{max-width:1440px;margin:auto;padding:22px}.hero{background:linear-gradient(125deg,#171b3b,#3b2a83 55%,#6d28d9);color:#fff;border-radius:24px;padding:30px;box-shadow:0 18px 45px rgba(35,31,82,.18)}.eyebrow{font-size:10px;letter-spacing:.14em;text-transform:uppercase;font-weight:900;opacity:.7}.hero h1{font-size:32px;line-height:1.08;margin:8px 0}.hero p{max-width:700px;color:#dfe3ff;font-size:13px;line-height:1.7;margin:0}.section-title{display:flex;align-items:end;justify-content:space-between;margin:22px 0 10px}.section-title h2{margin:0;font-size:19px}.section-title p{margin:0;color:var(--muted);font-size:11px}.cards{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}.card{background:var(--surface);border:1px solid var(--line);border-radius:18px;box-shadow:var(--shadow)}.module{padding:18px}.module .icon{font-size:24px}.module h3{margin:10px 0 4px;font-size:16px}.module p{margin:0 0 15px;color:var(--muted);font-size:11px;line-height:1.5}.meta{display:flex;flex-wrap:wrap;gap:6px}.pill{padding:6px 9px;background:#f7f8fa;border:1px solid var(--line);border-radius:999px;font-size:10px;color:#475467;font-weight:800}.navlink{display:inline-flex;align-items:center;justify-content:center;text-decoration:none;width:100%;margin-top:12px;padding:10px;border-radius:10px;background:var(--soft);color:#4438ca;font-size:11px;font-weight:900}.exam-grid{display:grid;grid-template-columns:1.6fr .8fr;gap:14px}.exam-card{padding:20px}.tabs{display:flex;gap:5px;overflow-x:auto;padding:5px;background:#fff;border:1px solid var(--line);border-radius:15px;scrollbar-width:none}.tabs::-webkit-scrollbar{display:none}.tab{white-space:nowrap;border:0;background:transparent;color:#667085;border-radius:10px;padding:10px 12px;font-size:11px;font-weight:900}.tab.active{background:#171b3b;color:#fff}.exam-head{display:flex;justify-content:space-between;gap:12px;align-items:start}.exam-head h1{font-size:21px;margin:0}.exam-head p{font-size:11px;color:var(--muted);margin:5px 0 0}.task-meta{display:flex;gap:6px;flex-wrap:wrap;margin:12px 0}.task-meta .pill{background:#f8fafc}.prompt{background:#fbfcfe;border:1px solid var(--line);border-radius:16px;padding:22px;font-size:20px;line-height:1.65;min-height:220px;display:flex;align-items:center}.audio-box{padding:12px;border:1px solid var(--line);border-radius:14px;background:#fbfcfe;margin:12px 0}.audio-box audio{width:100%}.controls{display:flex;gap:8px;flex-wrap:wrap;margin-top:12px}.controls .btn{min-width:110px}.side-stack{display:grid;gap:12px}.side-card{padding:16px}.side-card h3{margin:0 0 8px;font-size:13px}.side-card p,.side-card li{font-size:11px;line-height:1.65;color:var(--muted)}.side-card ul{margin:0;padding-left:17px}.timer{font-size:34px;font-weight:900;letter-spacing:-.04em}.status{display:inline-flex;align-items:center;gap:6px;font-size:10px;font-weight:900;color:var(--muted)}.dot{width:7px;height:7px;border-radius:50%;background:#98a2b3}.dot.live{background:#ef4444;box-shadow:0 0 0 5px #fee2e2}.transcript{min-height:115px;max-height:190px;overflow:auto;padding:13px;background:#101828;color:#e5e7eb;border-radius:14px;font-size:13px;line-height:1.6;margin-top:8px}.muted{color:var(--muted)}.hidden{display:none!important}.notice{padding:11px 13px;background:#fff8e8;border:1px solid #f5dfaa;color:#7a5a10;border-radius:12px;font-size:10px;line-height:1.5}.score-box{display:flex;align-items:center;justify-content:space-between;padding:15px;background:#f8f9ff;border:1px solid #e6e3ff;border-radius:14px}.score-number{font-size:28px;font-weight:900;color:#4338ca}.metric{margin-top:10px}.metric-row{display:flex;justify-content:space-between;font-size:10px;font-weight:800}.bar{height:6px;background:#eaecf0;border-radius:99px;overflow:hidden;margin-top:5px}.bar i{display:block;height:100%;background:linear-gradient(90deg,var(--brand),var(--brand2));width:0}.answer-box{width:100%;min-height:230px;border:1px solid var(--line);border-radius:14px;padding:14px;resize:vertical;outline:none}.answer-box:focus{border-color:#a7a1f8;box-shadow:0 0 0 3px #4f46e51a}.word-count{font-size:10px;color:var(--muted);text-align:right;margin-top:5px}.choice-grid{display:grid;gap:8px;margin-top:12px}.choice{border:1px solid var(--line);background:#fff;border-radius:12px;padding:12px;text-align:left;font-size:12px;font-weight:750}.choice.selected{background:var(--soft);border-color:#9a91f7;color:#4338ca}.choice.correct{border-color:#8ad8c1;background:#effbf6}.choice.wrong{border-color:#f2a0a3;background:#fff3f3}.future{min-height:480px;display:grid;place-items:center;text-align:center;padding:30px}.future .big{font-size:50px}.future h2{margin:10px 0}.future p{max-width:520px;color:var(--muted);font-size:12px;line-height:1.7}.progress-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}.stat{padding:16px}.stat small{font-size:10px;color:var(--muted)}.stat strong{display:block;font-size:25px;margin-top:5px}.table-wrap{overflow:auto}.table{width:100%;border-collapse:collapse;font-size:11px}.table th,.table td{text-align:left;padding:9px;border-bottom:1px solid var(--line)}@media(max-width:900px){.cards{grid-template-columns:1fr 1fr}.exam-grid{grid-template-columns:1fr}.progress-grid{grid-template-columns:1fr 1fr}}@media(max-width:640px){.appbar{padding:0 12px}.brand{font-size:14px}.shell{padding:10px}.hero{padding:22px;border-radius:18px}.hero h1{font-size:26px}.cards{grid-template-columns:1fr}.exam-card,.side-card{padding:13px}.prompt{font-size:17px;min-height:190px;padding:16px}.tab{font-size:10px;padding:9px}.controls .btn{flex:1;min-width:0}.progress-grid{grid-template-columns:1fr}.top-actions .btn.secondary{display:none}}
+
+/* ===== PTE PREMIUM UI V3 ===== */
+:root{
+  --bg:#f4f6fb;--surface:#ffffff;--surface2:#f8f9fd;
+  --ink:#0b1220;--muted:#667085;--line:#e5e8ef;
+  --brand:#5b3df5;--brand2:#8b3ffc;--navy:#111827;
+  --soft:#f0edff;--shadow:0 18px 55px rgba(15,23,42,.08);
+}
+body{
+  background:
+    radial-gradient(circle at 8% 0%,rgba(108,92,231,.08),transparent 30%),
+    radial-gradient(circle at 92% 5%,rgba(139,63,252,.07),transparent 28%),
+    var(--bg);
+}
+.appbar{
+  height:68px!important;padding:0 32px!important;
+  background:rgba(255,255,255,.82)!important;
+  backdrop-filter:blur(18px)!important;
+  box-shadow:0 1px 0 rgba(15,23,42,.04);
+}
+.brand{font-size:15px;letter-spacing:-.02em}
+.brandmark{
+  width:40px!important;height:40px!important;border-radius:13px!important;
+  background:linear-gradient(135deg,#4f36df,#8b3ffc)!important;
+  box-shadow:0 10px 24px rgba(91,61,245,.25)!important;
+}
+.shell{max-width:1480px!important;padding:20px 24px 28px!important}
+.tabs{
+  position:sticky;top:78px;z-index:15;
+  padding:6px!important;gap:4px!important;
+  background:rgba(255,255,255,.88)!important;
+  backdrop-filter:blur(16px);
+  border:1px solid rgba(229,232,239,.9)!important;
+  box-shadow:0 10px 30px rgba(15,23,42,.06)!important;
+}
+.tab{
+  min-height:48px;padding:8px 15px!important;border-radius:12px!important;
+  transition:.18s ease;position:relative;
+}
+.tab:hover{background:#f5f3ff;color:#4f46e5}
+.tab.active{
+  background:linear-gradient(135deg,#5538ed,#8738ee)!important;
+  box-shadow:0 8px 20px rgba(91,61,245,.20);
+}
+.exam-grid{grid-template-columns:minmax(0,1fr) 340px!important;gap:18px!important;margin-top:16px}
+.exam-card,.side-card{
+  border-color:rgba(225,228,236,.95)!important;
+  box-shadow:var(--shadow)!important;
+}
+.exam-card{border-radius:22px!important}
+.side-stack{gap:14px!important}
+.side-card{border-radius:18px!important}
+.exam-head{padding-bottom:5px}
+.exam-head h1{font-size:24px!important;letter-spacing:-.025em}
+.exam-head p{font-size:12px!important}
+.task-meta .pill{
+  background:#f7f7fb!important;border-color:#e8e9f0!important;
+  padding:7px 10px!important;
+}
+.prompt{
+  background:linear-gradient(180deg,#fbfcff,#f7f8fc)!important;
+  border-color:#e3e7ef!important;border-radius:18px!important;
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.9);
+}
+.controls .btn,.btn{
+  min-height:42px;border-radius:12px!important;
+  transition:transform .15s ease,box-shadow .15s ease,filter .15s ease;
+}
+.btn:hover{transform:translateY(-1px);filter:brightness(1.02)}
+.btn.primary{
+  background:linear-gradient(135deg,#5639ed,#8639ed)!important;
+  box-shadow:0 9px 22px rgba(91,61,245,.22)!important;
+}
+.btn.secondary{
+  background:#fff!important;border-color:#e1e5ec!important;
+  box-shadow:0 3px 10px rgba(15,23,42,.04);
+}
+.side-card h3{font-size:13px!important;letter-spacing:-.01em}
+.timer{font-size:38px!important;color:#4f36df}
+.transcript{
+  background:linear-gradient(145deg,#0d1424,#172033)!important;
+  border:1px solid rgba(255,255,255,.06);
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.05);
+}
+.notice{
+  background:#fffaf0!important;border-color:#f0d99d!important;
+  box-shadow:0 5px 18px rgba(183,121,31,.05);
+}
+.score-box{
+  background:
+    radial-gradient(circle at 100% 0%,rgba(124,58,237,.12),transparent 45%),
+    linear-gradient(145deg,#f8f7ff,#f2efff)!important;
+  border:1px solid #ded9ff!important;
+  border-radius:18px!important;
+  padding:17px!important;
+  box-shadow:0 10px 28px rgba(91,61,245,.08);
+}
+.score-number{font-size:34px!important;color:#4f36df!important;letter-spacing:-.035em}
+.metric{margin-top:13px!important}
+.metric-row{font-size:11px!important}
+.bar{height:7px!important;background:#e5e7ee!important}
+.bar i{background:linear-gradient(90deg,#5b3df5,#8b3ffc)!important}
+.future{border-radius:18px!important;background:linear-gradient(180deg,#fbfcff,#f5f6fa)}
+.answer-box{
+  background:#fff!important;border-color:#dfe3eb!important;
+  border-radius:16px!important;font-size:15px;
+}
+.answer-box:focus{border-color:#8776f5!important;box-shadow:0 0 0 4px rgba(91,61,245,.10)!important}
+.choice{
+  transition:.15s ease;border-color:#e2e6ed!important;
+  box-shadow:0 2px 8px rgba(15,23,42,.025);
+}
+.choice:hover{transform:translateY(-1px);border-color:#bdb5fb!important}
+.status{padding:7px 10px;background:#f7f8fa;border-radius:999px}
+.dot{width:8px;height:8px}
+@media(max-width:900px){
+  .exam-grid{grid-template-columns:1fr!important}
+  .tabs{position:sticky;top:66px}
+}
+@media(max-width:640px){
+  .appbar{padding:0 12px!important;height:60px!important}
+  .shell{padding:10px 9px 20px!important}
+  .tabs{top:60px;border-radius:14px!important}
+  .tab{min-height:44px;padding:7px 11px!important}
+  .exam-grid{gap:10px!important;margin-top:10px}
+  .exam-card{padding:14px!important;border-radius:18px!important}
+  .exam-head h1{font-size:20px!important}
+  .score-number{font-size:30px!important}
+}
+</style></head><body>
+<header class="appbar"><div class="brand"><div class="brandmark">P</div>PTE Academic Practice</div><div class="top-actions"><a class="btn secondary" href="https://script.google.com/macros/s/AKfycbytEPdMZdkgsnQVfKcb5HUoDWKnTGPNQb5LA-osdkAGF2ygPGZiYPxpzrdzEmPvb-9Bkw/exec?teacher=1" style="text-decoration:none;margin-right:8px">🔐 Teacher Login</a><a class="btn secondary" href="full-mock.html" style="text-decoration:none">Full Mock</a></div></header>
+<main class="shell">
+<section class="hero"><div class="eyebrow">Premium Exam Practice</div><h1>Practice like test day.<br>Prepare with purpose.</h1><p>Clean, distraction-free practice for every current PTE Academic question type. Each module shows the approximate exam time and question count so students can plan intelligently.</p><div class="controls"><a class="btn primary" href="speaking.html" style="text-decoration:none">Start Speaking & Writing</a><a class="btn secondary" href="full-mock.html" style="text-decoration:none">Enter Full Mock</a></div></section>
+<div class="section-title"><div><h2>Exam structure</h2><p>Current PTE Academic format</p></div></div>
+<div class="cards">
+<div class="card module"><div class="icon">🗣️</div><h3>Speaking & Writing</h3><p>9 question types • approximately 76–84 minutes</p><div class="meta"><span class="pill">Speaking</span><span class="pill">Writing</span><span class="pill">9 types</span></div><a class="navlink" href="speaking.html">Open module →</a></div>
+<div class="card module"><div class="icon">📚</div><h3>Reading</h3><p>5 question types • approximately 23–30 minutes</p><div class="meta"><span class="pill">Reading</span><span class="pill">5 types</span></div><a class="navlink" href="reading.html">Open module →</a></div>
+<div class="card module"><div class="icon">🎧</div><h3>Listening</h3><p>8 question types • approximately 31–39 minutes</p><div class="meta"><span class="pill">Listening</span><span class="pill">8 types</span></div><a class="navlink" href="listening.html">Open module →</a></div>
+</div>
+<div class="section-title"><div><h2>Skill builders</h2><p>Extra practice — not official PTE question types</p></div></div>
+<div class="cards">
+<div class="card module"><div class="icon">📘</div><h3>Grammar</h3><p>Focused grammar drills for accuracy and confidence.</p><a class="navlink" href="grammar.html">Practice grammar →</a></div>
+<div class="card module"><div class="icon">🧠</div><h3>Vocabulary</h3><p>Context-based vocabulary practice for stronger responses.</p><a class="navlink" href="vocabulary.html">Practice vocabulary →</a></div>
+<div class="card module"><div class="icon">📊</div><h3>My Progress</h3><p>Sign in to view your finished questions, section totals and completion dates.</p><a class="navlink" href="student.html">View my progress →</a></div>
+</div>
+</main>
+<script>const API_URL='https://script.google.com/macros/s/AKfycbytEPdMZdkgsnQVfKcb5HUoDWKnTGPNQb5LA-osdkAGF2ygPGZiYPxpzrdzEmPvb-9Bkw/exec';</script><script src="student-progress.js"></script><script src="sync-config.js"></script><script src="student-auth.js"></script><script src="cloud-sync.js"></script>
+<script src="selection-helper.js"></script>
+</body></html>

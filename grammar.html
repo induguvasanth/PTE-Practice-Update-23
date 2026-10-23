@@ -1,0 +1,303 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Grammar Practice</title>
+<style>
+:root{--bg:#f4f5fb;--card:#fff;--ink:#172238;--muted:#64748b;--line:#dde3ee;--p:#5637d8;--p2:#7540e8;--soft:#f0edff;--good:#087f5b;--bad:#c34250;--gold:#9a6700}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);font-family:Inter,Segoe UI,Arial,sans-serif}
+button{font:inherit;cursor:pointer}.header{height:74px;background:#fff;border-bottom:1px solid var(--line);display:flex;align-items:center;justify-content:space-between;padding:0 28px;position:sticky;top:0;z-index:20}.brand{display:flex;align-items:center;gap:11px;font-weight:900;font-size:19px}.logo{width:46px;height:46px;border-radius:15px;background:linear-gradient(135deg,var(--p),var(--p2));display:grid;place-items:center;color:#fff;box-shadow:0 8px 22px #5838d63b}.dash{border:1px solid var(--line);background:#fff;color:#334155;border-radius:13px;padding:12px 18px;font-weight:850;font-size:12px}
+.page{max-width:1600px;margin:auto;padding:24px 28px}.hero{background:linear-gradient(135deg,#2f1d72,#5d31c9 55%,#7945ed);border-radius:24px;padding:28px;color:#fff;box-shadow:0 16px 35px #4931b129}.hero h1{margin:0;font-size:31px}.hero p{margin:10px 0 0;font-size:14px;opacity:.9}
+.tabs{display:flex;gap:8px;flex-wrap:wrap;margin:16px 0 18px}.tab{border:1px solid #d9d2f2;background:#fff;border-radius:12px;padding:12px 16px;color:#25324a;font-weight:850;font-size:13px}.tab.active{background:linear-gradient(135deg,var(--p),var(--p2));color:#fff;border-color:transparent;box-shadow:0 8px 18px #5737d533}
+.layout{display:grid;grid-template-columns:minmax(0,1fr) 395px;gap:18px}.card{background:var(--card);border:1px solid var(--line);border-radius:21px;box-shadow:0 10px 28px #2634490b}.practice{padding:22px}.side{padding:20px}.status{display:flex;justify-content:space-between;align-items:center;margin-bottom:14px}.kicker{font-size:11px;font-weight:950;letter-spacing:.12em;color:#6654c8}.count{font-size:11px;color:var(--muted);font-weight:800}.prompt{background:#f8fafc;border:1px solid var(--line);border-radius:18px;padding:28px;min-height:210px;display:flex;align-items:center;font-size:24px;line-height:1.6;font-weight:650}.instruction{margin:12px 0 0;color:var(--muted);font-size:13px;line-height:1.55}.choices{display:grid;gap:10px;margin-top:16px}.choice{width:100%;text-align:left;border:1px solid var(--line);background:#fff;border-radius:14px;padding:15px 17px;font-size:15px;font-weight:750;color:#26354b}.choice:hover{border-color:#a497ed;background:#faf9ff}.choice.selected{border-color:var(--p);background:var(--soft);box-shadow:0 0 0 3px #5b39ef12}.choice.correct{border-color:#55b995;background:#ecfbf5}.choice.wrong{border-color:#e88993;background:#fff1f2}
+textarea{width:100%;min-height:180px;border:1px solid var(--line);border-radius:16px;padding:16px;font:inherit;font-size:16px;line-height:1.6;color:var(--ink);resize:vertical;margin-top:16px}.actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:18px}.btn{border:0;border-radius:13px;padding:13px 18px;font-size:13px;font-weight:900}.primary{background:linear-gradient(135deg,var(--p),var(--p2));color:#fff;box-shadow:0 8px 20px #5838d629}.soft{background:#eef1f6;color:#344258;border:1px solid #e0e5ee}.hint,.solution,.result{margin-top:14px;border-radius:15px;padding:15px 17px;font-size:14px;line-height:1.6}
+.resourceWrap{margin-top:18px;padding-top:18px;border-top:1px solid var(--line)}
+.resourceBtn{display:inline-flex;align-items:center;gap:9px;text-decoration:none;border:1px solid #d8d1f5;background:#fff;color:#3f2a9f;border-radius:14px;padding:13px 18px;font-size:13px;font-weight:900;box-shadow:0 7px 18px #5a3ad00d}
+.resourceBtn:hover{background:#f6f3ff;border-color:#aa9be9;transform:translateY(-1px)}
+.resourceNote{margin:8px 0 0;color:var(--muted);font-size:12px}.hint{background:#fff8e9;border:1px solid #f0d9a6;color:#765a1b}.solution{background:#f4f1ff;border:1px solid #ddd3ff}.result.good{background:#eafaf3;border:1px solid #9bd8bd;color:#075f45}.result.bad{background:#fff1f2;border:1px solid #f0b0b8;color:#9d2432}.hidden{display:none}
+.scorePanel{background:linear-gradient(145deg,#f0efff,#f9f7ff);border:1px solid #ded8ff;border-radius:19px;padding:18px}.scoreLabel{font-size:12px;color:var(--muted)}.score{font-size:44px;font-weight:950;color:#4d35bd;margin:7px 0}.tip{background:#f8fafc;border:1px solid var(--line);border-radius:16px;padding:15px;margin-top:14px}.tip h3{margin:0 0 9px;font-size:15px}.tip ul{margin:0;padding-left:20px;color:#536174;font-size:13px;line-height:1.85}.loading{padding:60px 20px;text-align:center;color:var(--muted)}.error{padding:16px;background:#fff1f2;border:1px solid #f0b0b8;border-radius:14px;color:#9d2432;line-height:1.6}.small{font-size:12px;color:var(--muted);margin-top:6px}
+@media(max-width:980px){.layout{grid-template-columns:1fr}.page{padding:16px}.header{padding:0 16px}}@media(max-width:650px){.hero h1{font-size:25px}.prompt{font-size:19px;padding:20px;min-height:170px}.tabs{flex-wrap:nowrap;overflow:auto}.tab{white-space:nowrap}.header{height:64px}.brand{font-size:15px}.logo{width:38px;height:38px}.actions .btn{flex:1 1 45%}}
+
+/* Premium question jump */
+.question-jump{display:flex;align-items:center;gap:8px;padding:7px 9px;border:1px solid #e3e7ef;border-radius:14px;background:rgba(255,255,255,.72);box-shadow:0 8px 22px rgba(15,23,42,.04)}
+.question-jump label{font-size:11px;font-weight:900;color:#64748b;white-space:nowrap}.question-jump input{width:82px;border:1px solid #d8deea;border-radius:10px;background:#fff;padding:8px 9px;font-weight:800;color:#334155;outline:none}.question-jump input:focus{border-color:#7c5ce6;box-shadow:0 0 0 3px rgba(124,92,230,.12)}.question-jump .go{border:0;border-radius:10px;padding:8px 11px;font-weight:900;color:#fff;background:linear-gradient(135deg,#5637d8,#7846ed)}
+@media(max-width:640px){.question-jump{width:100%;justify-content:space-between}.question-jump input{flex:1}}
+</style>
+</head>
+<body>
+<header class="header">
+  <div class="brand"><div class="logo">P</div><span>Grammar Practice</span></div>
+  <button class="dash" onclick="location.href='index.html'">← Dashboard</button>
+</header>
+
+<main class="page">
+  <section class="hero">
+    <h1>🧠 Grammar Practice</h1>
+    <p>Learn → Hint → Practice → Check → Review</p>
+  </section>
+
+  <div id="tabs" class="tabs"></div>
+
+  <div class="layout">
+    <section class="card practice">
+      <div id="loading" class="loading">Connecting to Grammar practice...</div>
+      <div id="content" class="hidden"></div>
+    </section>
+
+    <aside class="card side">
+      <h2 style="margin:0 0 12px;font-size:18px">Practice result</h2>
+      <div class="scorePanel">
+        <div class="scoreLabel">Current question</div>
+        <div id="score" class="score">—</div>
+        <div class="small">Score appears after you check the answer.</div>
+      </div>
+      <div class="tip">
+        <h3>💡 Best Method</h3>
+        <ul>
+          <li>Read the complete sentence first.</li>
+          <li>Try without using the hint.</li>
+          <li>Use grammar and meaning together.</li>
+          <li>Check the explanation after answering.</li>
+          <li>Repeat weak topics.</li>
+        </ul>
+      </div>
+    </aside>
+  </div>
+</main>
+
+<script>
+const API_URL = 'https://script.google.com/macros/s/AKfycbytEPdMZdkgsnQVfKcb5HUoDWKnTGPNQb5LA-osdkAGF2ygPGZiYPxpzrdzEmPvb-9Bkw/exec';
+
+const TOPICS = [
+  ['grammarPartsOfSpeech','Parts of Speech'],
+  ['grammarTenses','Tenses'],
+  ['grammarSubjectVerbAgreement','Subject Verb Agreement'],
+  ['grammarArticles','Articles'],
+  ['grammarPrepositions','Prepositions'],
+  ['grammarSentenceStructure','Sentence Structure'],
+  ['grammarErrorIdentification','Error Identification'],
+  ['grammarSentenceCorrection','Sentence Correction'],
+  ['grammarActivePassive','Active Passive'],
+  ['grammarReportedSpeech','Reported Speech'],
+  ['grammarConditionals','Conditionals'],
+  ['grammarLinkingWords','Linking Words'],
+  ['grammarMixedChallenge','Mixed Challenge']
+];
+
+let currentTopic = TOPICS[0][0];
+let questions = [];
+let index = 0;
+let selected = -1;
+
+const $ = id => document.getElementById(id);
+
+function jsonp(action){
+  return new Promise((resolve,reject)=>{
+    const callback = 'pteGrammar_' + Date.now() + '_' + Math.floor(Math.random()*10000);
+    const script = document.createElement('script');
+    const timer = setTimeout(()=>{
+      cleanup();
+      reject(new Error('Backend timeout. Please check the latest deployed Code.gs.'));
+    },15000);
+
+    function cleanup(){
+      clearTimeout(timer);
+      if(script.parentNode) script.remove();
+      try{ delete window[callback]; }catch(e){ window[callback]=undefined; }
+    }
+
+    window[callback] = data => {
+      cleanup();
+      resolve(data);
+    };
+
+    script.onerror = () => {
+      cleanup();
+      reject(new Error('Backend connection failed.'));
+    };
+
+    script.src = API_URL + '?action=' + encodeURIComponent(action) + '&callback=' + encodeURIComponent(callback) + '&t=' + Date.now();
+    document.body.appendChild(script);
+  });
+}
+
+function buildTabs(){
+  const tabs = $('tabs');
+  TOPICS.forEach(([key,label])=>{
+    const b=document.createElement('button');
+    b.className='tab' + (key===currentTopic?' active':'');
+    b.textContent=label;
+    b.onclick=()=>loadTopic(key);
+    tabs.appendChild(b);
+  });
+}
+
+async function loadTopic(key){
+  currentTopic=key;
+  index=0; selected=-1; questions=[];
+  document.querySelectorAll('.tab').forEach((b,n)=>b.classList.toggle('active',TOPICS[n][0]===key));
+  $('loading').classList.remove('hidden');
+  $('loading').textContent='Loading questions...';
+  $('content').classList.add('hidden');
+  $('score').textContent='—';
+
+  try{
+    const data = await jsonp(key);
+    if(data && data.ok===false) throw new Error(data.error || 'Unable to load this topic.');
+    questions = (data && data.questions) ? data.questions : [];
+    $('loading').classList.add('hidden');
+    $('content').classList.remove('hidden');
+    render();
+  }catch(err){
+    $('loading').classList.add('hidden');
+    $('content').classList.remove('hidden');
+    $('content').innerHTML = '<div class="error"><b>Unable to load Grammar content.</b><br>'+escapeHtml(err.message)+'<br><br>Make sure the updated <b>Code.gs</b> is pasted and the web app is redeployed.</div>';
+  }
+}
+
+function render(){
+  if(!questions.length){
+    const topic = TOPICS.find(x=>x[0]===currentTopic)[1];
+    $('content').innerHTML='<div class="loading"><h2>No questions found</h2><p>Expected sheet: <b>Grammar - '+escapeHtml(topic)+'</b></p><p>Check the sheet name and make sure the spreadsheet is the same one configured in Code.gs.</p></div>';
+    return;
+  }
+
+  const q=questions[index] || {};
+  window.PTEProgress?.setContext('Grammar',currentTopic,index,q);
+  const label=TOPICS.find(x=>x[0]===currentTopic)[1];
+  const prompt=q.question || q.text || q.prompt || '';
+  const isCorrection=currentTopic==='grammarSentenceCorrection';
+  const options=Array.isArray(q.options)?q.options:[];
+  const hasOptions=options.length>0;
+
+  let input='';
+  if(hasOptions && !isCorrection){
+    input='<div class="choices">'+options.map((o,n)=>'<button class="choice '+(selected===n?'selected':'')+'" data-choice="'+n+'">'+escapeHtml(o)+'</button>').join('')+'</div>';
+  }else{
+    input='<textarea id="writtenAnswer" placeholder="Type your answer here..."></textarea>';
+  }
+
+  $('content').innerHTML=`
+    <div class="status">
+      <div>
+        <div class="kicker">${escapeHtml(label.toUpperCase())}</div>
+        <div class="instruction">Question ${index+1} of ${questions.length} • Self-paced grammar practice</div>
+      </div>
+      <div class="count">Practice mode</div>
+    </div>
+
+    <div class="prompt">${escapeHtml(prompt)}</div>
+    <div class="instruction">Choose or write the best answer. Use the full sentence context.</div>
+
+    ${input}
+
+    <div class="actions">
+      <button class="btn soft" id="hintBtn">💡 Hint</button>
+      <button class="btn primary" id="checkBtn">✓ Check Answer</button>
+      <button class="btn soft" id="prevBtn">← Previous</button>
+      <div class="question-jump"><label for="questionJump">Question</label><input id="questionJump" type="number" min="1" max="${questions.length}" value="${index+1}" inputmode="numeric" aria-label="Enter question number"><button class="go" id="goQuestion">Go</button></div>
+      <button class="btn soft" id="nextBtn">Next →</button>
+      <button class="btn soft" id="resetBtn">↻ Reset</button>
+    </div>
+
+    <div id="hintBox" class="hint hidden"></div>
+    <div id="resultBox" class="result hidden"></div>
+    <div id="solutionBox" class="solution hidden"></div>
+
+    <div id="resourceWrap" class="resourceWrap hidden">
+      <a id="resourceBtn" class="resourceBtn" href="#" target="_blank" rel="noopener noreferrer">
+        🔗 Open Learning Resource ↗
+      </a>
+      <div class="resourceNote">Opens the optional resource in a new tab.</div>
+    </div>
+  `;
+
+  document.querySelectorAll('[data-choice]').forEach(btn=>{
+    btn.onclick=()=>{
+      selected=Number(btn.dataset.choice);
+      document.querySelectorAll('[data-choice]').forEach(x=>x.classList.remove('selected'));
+      btn.classList.add('selected');
+    };
+  });
+
+  // Optional Resource URL.
+  // It may be an image, PDF, video, webpage, or another learning link.
+  // The button is hidden completely when Resource URL is empty.
+  const resourceUrl = String(q.resourceUrl || q.resourceURL || q.resource || '').trim();
+  if(resourceUrl){
+    $('resourceBtn').href = resourceUrl;
+    $('resourceWrap').classList.remove('hidden');
+  }
+
+  $('hintBtn').onclick=()=>{
+    const h=$('hintBox');
+    h.textContent=q.explanation || 'Read the complete sentence and check which grammar pattern fits correctly.';
+    h.classList.toggle('hidden');
+  };
+
+  $('checkBtn').onclick=()=>checkAnswer(q,hasOptions);
+  $('prevBtn').onclick=()=>{if(index>0){index--;selected=-1;render();$('score').textContent='—';}};
+  $('nextBtn').onclick=()=>{if(index<questions.length-1){index++;selected=-1;render();$('score').textContent='—';}};
+  $('goQuestion').onclick=()=>{const entered=Math.trunc(Number($('questionJump').value));const n=entered-1;if(Number.isFinite(n)&&n>=0&&n<questions.length){index=n;selected=-1;render();$('score').textContent='—';window.scrollTo({top:0,behavior:'smooth'});}else{alert('Enter a question number from 1 to '+questions.length);$('questionJump').focus();}};
+  $('questionJump').onkeydown=(e)=>{if(e.key==='Enter')$('goQuestion').click();};
+  $('resetBtn').onclick=()=>{selected=-1;render();$('score').textContent='—';};
+}
+
+function cleanAnswer(value){
+  return String(value||'')
+    .toLowerCase()
+    .replace(/^[a-f][\.\)\:\-]\s*/,'')
+    .replace(/[^a-z0-9]+/g,' ')
+    .trim();
+}
+
+function checkAnswer(q,hasOptions){
+  let userAnswer='';
+  if(hasOptions && selected>=0){
+    userAnswer=q.options[selected];
+  }else if(!hasOptions){
+    userAnswer=$('writtenAnswer') ? $('writtenAnswer').value : '';
+  }
+
+  if(!String(userAnswer).trim()){
+    alert(hasOptions?'Please choose an answer first.':'Please type your answer first.');
+    return;
+  }
+
+  const correct=String(q.answer||'');
+  const ok=cleanAnswer(userAnswer)===cleanAnswer(correct);
+  $('score').textContent=ok?'100%':'Review';
+
+  window.PTEProgress?.markScore(ok?100:0);
+  const result=$('resultBox');
+  result.className='result '+(ok?'good':'bad');
+  result.textContent=ok?'🎉 Correct! Excellent work.':'📘 Not quite. Review the correct answer and explanation.';
+  result.classList.remove('hidden');
+
+  const solution=$('solutionBox');
+  solution.innerHTML='<b>Correct answer:</b> '+escapeHtml(correct)+'<br><br><b>Explanation:</b> '+escapeHtml(q.explanation||'Review the grammar rule and try a similar question again.');
+  solution.classList.remove('hidden');
+
+  if(hasOptions && selected>=0){
+    const buttons=document.querySelectorAll('[data-choice]');
+    buttons.forEach((b,n)=>{
+      if(cleanAnswer(q.options[n])===cleanAnswer(correct)) b.classList.add('correct');
+      if(n===selected && !ok) b.classList.add('wrong');
+    });
+  }
+}
+
+function escapeHtml(value){
+  return String(value??'').replace(/[&<>"']/g,ch=>({
+    '&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'
+  }[ch]));
+}
+
+buildTabs();
+loadTopic(currentTopic);
+</script>
+<script src="free-evaluator.js"></script><script src="student-progress.js"></script><script src="sync-config.js"></script><script src="student-auth.js"></script><script src="cloud-sync.js"></script>
+<script src="selection-helper.js"></script>
+</body>
+</html>

@@ -1,0 +1,356 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Full Mock Test • PTE Practice</title>
+<style>
+:root{--ink:#26374f;--muted:#697789;--line:rgba(205,214,229,.95);--purple:#5636d5;--purple2:#824ce8;--glass:rgba(255,255,255,.78);--shadow:0 20px 55px rgba(41,52,84,.11)}
+*{box-sizing:border-box}body{margin:0;background:linear-gradient(180deg,#f5f7fc,#eef1f7);font-family:Inter,Segoe UI,Arial,sans-serif;color:var(--ink)}
+button,input,textarea,select{font:inherit}button{cursor:pointer}.top{height:86px;display:flex;align-items:center;justify-content:space-between;padding:0 26px;background:rgba(255,255,255,.74);backdrop-filter:blur(18px);border-bottom:1px solid var(--line);position:sticky;top:0;z-index:20}.brand{display:flex;align-items:center;gap:13px;font-size:22px;font-weight:900}.logo{width:46px;height:46px;display:grid;place-items:center;border-radius:15px;background:linear-gradient(135deg,#5133ca,#7a49e9);color:#fff;box-shadow:0 10px 26px #5636d544}.btn,.back{border:1px solid #d7deea;background:rgba(255,255,255,.75);border-radius:14px;padding:12px 18px;font-weight:850;color:#334155}.btn.primary{border:0;color:#fff;background:linear-gradient(135deg,var(--purple),var(--purple2));box-shadow:0 12px 26px rgba(86,54,213,.26)}.btn.danger{color:#a33b3b;border-color:#efc9c9;background:#fffafa}.btn:disabled{opacity:.48;cursor:not-allowed}
+.page{max-width:1780px;margin:auto;padding:26px 30px 44px}.hero{padding:27px 32px;border-radius:25px;background:linear-gradient(120deg,#322267,#5d35cb,#7d47e8);color:#fff;box-shadow:var(--shadow);margin-bottom:20px}.heroRow{display:flex;justify-content:space-between;gap:24px;align-items:center}.hero h1{margin:0 0 8px;font-size:32px}.hero p{margin:0;color:#e8e1ff}.heroStats{display:flex;gap:10px}.heroStat{min-width:115px;padding:12px 16px;border:1px solid #ffffff2f;border-radius:16px;background:#ffffff12;text-align:center}.heroStat b{display:block;font-size:21px}.heroStat small{color:#e8e1ff}
+.card{background:var(--glass);backdrop-filter:blur(18px);border:1px solid var(--line);border-radius:24px;box-shadow:0 12px 34px rgba(40,51,82,.06)}.practice{padding:26px}.layout{display:grid;grid-template-columns:minmax(0,1fr) 380px;gap:20px}.side{padding:22px;height:max-content;position:sticky;top:104px}.statusLine{display:flex;justify-content:space-between;gap:12px;align-items:center}.eyebrow,.questionLabel{font-size:11px;font-weight:900;letter-spacing:1.4px;color:#6f63a9}.taskTitle{font-size:29px;font-weight:900;margin:4px 0}.meta{color:var(--muted);font-size:14px}.pill{padding:9px 13px;border-radius:999px;background:#f0edff;color:#5a42c8;font-size:12px;font-weight:900;white-space:nowrap}
+.tabs{display:flex;gap:8px;padding:8px;border:1px solid var(--line);border-radius:18px;background:#fff;overflow:auto;margin-bottom:18px}.tab{border:0;background:transparent;padding:11px 14px;border-radius:12px;font-weight:850;color:#64748b;white-space:nowrap}.tab.active{color:#fff;background:linear-gradient(135deg,#5537d6,#7747e8)}
+.prompt{min-height:230px;padding:28px;border:1px solid #d8deea;border-radius:22px;background:linear-gradient(145deg,#fff,#f6f7fb);font-size:20px;line-height:1.62;display:flex;flex-direction:column;justify-content:center;gap:16px}.prompt img{max-width:100%;max-height:440px;object-fit:contain;border-radius:16px;background:#fff;border:1px solid #e4e8f0}.audioBox{padding:14px;border-radius:16px;background:#f6f7fc;border:1px solid #dfe4ed}.audioBox audio{width:100%}.hint{padding:13px 15px;border:1px solid #ead39a;background:#fffaf0;border-radius:15px;color:#6f5a2d;font-size:14px;margin:14px 0}
+.options{display:grid;gap:10px;margin-top:16px}.option{display:flex;align-items:flex-start;gap:12px;padding:14px 16px;border:1px solid #d9dfeb;background:#fff;border-radius:15px;cursor:pointer}.option:hover{border-color:#a89be9}.option input{margin-top:4px;accent-color:#6040da}.answerBox{margin-top:16px}.answerBox textarea,.answerBox input,.answerBox select{width:100%;border:1px solid #d7deea;border-radius:16px;background:#fff;padding:15px;color:#26374f;outline:none}.answerBox textarea{min-height:150px;resize:vertical}.answerBox textarea:focus,.answerBox input:focus,.answerBox select:focus{border-color:#7357df;box-shadow:0 0 0 4px #7357df18}
+.speakingPanel{margin-top:16px;padding:20px;border:1px solid #d8d1ff;border-radius:19px;background:linear-gradient(135deg,#fbfaff,#f4f1ff)}.micRow{display:flex;flex-wrap:wrap;gap:10px;align-items:center}.micStatus{font-size:13px;color:#64748b;font-weight:700}.liveTranscript{margin-top:14px;padding:15px;border-radius:14px;background:#fff;border:1px solid #e0e3ed;min-height:64px;line-height:1.55}.liveTranscript.empty{color:#8b96a8}.attemptMark{margin-top:10px;font-size:13px;color:#64748b}
+.fillRow{display:flex;flex-wrap:wrap;gap:8px;align-items:center}.fillSelect{min-width:140px;max-width:260px;border:1px solid #cfd6e7;border-radius:12px;padding:10px;background:#fff;font-weight:800;color:#4d3bb7}.reorder{display:grid;gap:9px;margin-top:15px}.reorderItem{display:flex;gap:10px;align-items:center}.reorderItem span{flex:1;padding:12px 14px;border:1px solid #dce2ec;background:#fff;border-radius:13px}.mini{padding:8px 11px;border:1px solid #d8deea;border-radius:10px;background:#fff}
+.solution{margin-top:18px;padding:18px;border-radius:18px;border:1px solid #d8d1ff;background:#f7f5ff;display:none}.solution.show{display:block}.solution h3{margin:0;font-size:18px}.solutionHead{display:flex;justify-content:space-between;align-items:center;gap:12px;margin-bottom:16px}.supportToggles{display:flex;flex-wrap:wrap;gap:8px;margin:0 0 14px}
+.supportToggle{border:1px solid #d8ddea;border-radius:999px;padding:8px 12px;background:#fff;color:#596579;font-weight:850;font-size:12px;cursor:pointer}
+.supportToggle:hover{border-color:#9d8be8;color:#4d35c3}
+.supportToggle.active{background:#eeeaff;border-color:#c8bcff;color:#5037c5}
+.supportSection{margin-top:10px}
+.reviewSupport{margin-top:12px;padding-top:12px;border-top:1px solid #e8ebf1}
+.reviewToggleRow{display:flex;flex-wrap:wrap;gap:7px;margin-top:10px}
+.reviewToggle{border:1px solid #d8ddea;border-radius:999px;padding:6px 10px;background:#fff;color:#596579;font-weight:800;font-size:11px;cursor:pointer}
+.reviewToggle.active{background:#eeeaff;border-color:#c8bcff;color:#5037c5}
+.supportHidden{display:none!important}
+.supportGrid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}.supportItem{padding:14px;border:1px solid #e0e4ef;border-radius:15px;background:rgba(255,255,255,.78)}.supportItem>b{display:block;font-size:12px;text-transform:uppercase;letter-spacing:1px;color:#6b7890;margin-bottom:8px}.supportText{white-space:pre-wrap;line-height:1.55;font-size:14px}.mutedSupport{color:#8994a5}.templateBlock{margin-top:14px;padding:14px;border:1px solid #e0e4ef;border-radius:15px;background:rgba(255,255,255,.78)}.templateBlock>b{display:block;font-size:12px;text-transform:uppercase;letter-spacing:1px;color:#6b7890}.solution pre{white-space:pre-wrap;font-family:inherit;line-height:1.55;margin:0}.resourceRow{display:flex;flex-wrap:wrap;gap:10px;margin-top:14px}.resource{border:1px solid #d7ddeb;border-radius:12px;padding:9px 12px;background:#fff;color:#4338ca;font-weight:800;text-decoration:none}
+.controls{display:flex;flex-wrap:wrap;gap:10px;margin-top:18px;align-items:center}.jump{display:flex;align-items:center;gap:7px;padding:6px 8px;border:1px solid #dbe1ec;border-radius:14px;background:#fff}.jump label{font-size:11px;font-weight:900;color:#64748b}.jump input{width:76px;border:1px solid #d9dfeb;border-radius:10px;padding:8px 9px;font-weight:900}.progressWrap{margin-top:14px}.progressText{display:flex;justify-content:space-between;font-size:12px;color:#64748b;margin-bottom:7px}.bar{height:10px;background:#e8ebf2;border-radius:999px;overflow:hidden}.fill{height:100%;width:0;background:linear-gradient(90deg,#5a3bd6,#7d49ea);transition:.3s}
+
+.liveScoreCard{margin-top:14px;padding:15px;border:1px solid #d9d1ff;border-radius:18px;background:linear-gradient(135deg,rgba(248,247,255,.95),rgba(255,255,255,.88))}.liveScoreHead{display:flex;justify-content:space-between;align-items:center;gap:10px}.liveScoreHead b{font-size:15px}.liveScoreValue{font-size:25px;font-weight:950;color:#5137c9;margin-top:7px}.scoreSub{font-size:12px;color:#718096;margin-top:3px}.scoreRows{display:grid;gap:8px;margin-top:12px}.scoreRow{display:flex;justify-content:space-between;align-items:center;padding:10px 11px;border:1px solid #e0e4ee;border-radius:12px;background:rgba(255,255,255,.85);font-size:13px}.scoreRow b{color:#4338ca}.liveScoreInline{display:flex;align-items:center;gap:10px;margin-top:13px;padding:11px 13px;border:1px solid #dcd6ff;border-radius:14px;background:#faf9ff;font-size:13px}.liveScoreInline strong{color:#4f37c7}.scoreBadge{margin-left:auto;padding:6px 10px;border-radius:999px;background:#eeeaff;color:#5037c5;font-weight:900}.sectionComplete{display:none;margin-top:18px;padding:24px;border:1px solid #d6c8ff;border-radius:22px;background:linear-gradient(135deg,#faf8ff,#f2efff);box-shadow:0 18px 42px rgba(75,51,170,.12)}.sectionComplete.show{display:block}.sectionComplete h2{margin:0 0 6px;font-size:25px}.sectionScoreGrid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin:16px 0}.sectionScoreStat{padding:15px;border:1px solid #ded8fb;border-radius:15px;background:#fff}.sectionScoreStat span{font-size:12px;color:#748096}.sectionScoreStat b{display:block;font-size:24px;margin-top:5px;color:#4d35c3}.sectionReviewList{display:grid;gap:11px}.sectionReviewItem{padding:14px;border:1px solid #e1e4ed;border-radius:15px;background:#fff}.sectionReviewItem h4{margin:2px 0 0;font-size:15px}.reviewQuestionHead{display:flex;justify-content:space-between;gap:14px;align-items:center}.sectionQuestionText{margin-top:10px;padding:11px 12px;border-radius:12px;background:#f7f8fc;line-height:1.5;font-size:14px}.reviewMarkLine{display:flex;justify-content:space-between;margin-top:10px;padding-top:10px;border-top:1px solid #e8ebf1;font-size:13px}.reviewMarkLine b{color:#4d35c3}.sectionReviewItem .meta{margin-top:5px}.sectionReviewItem .answerLine{margin-top:8px;font-size:14px;line-height:1.55}.sectionReviewItem img,.templatePreview{max-width:100%;max-height:320px;object-fit:contain;margin-top:10px;border:1px solid #e2e6ef;border-radius:12px;background:#fff}.scoreGood{color:#16803c}.scoreBad{color:#b44343}.scoreNeutral{color:#5f6b7a}
+
+.timer{font-size:38px;font-weight:950;color:#4930b9}.sideActions{display:flex;gap:9px;margin-top:15px}.sideActions .btn{flex:1}.sectionList{display:grid;gap:8px;margin-top:16px}.sectionRow{display:flex;justify-content:space-between;padding:11px 12px;border:1px solid #e0e5ed;border-radius:13px;background:#fff;font-size:13px}.summary{display:none;padding:26px}.summary.show{display:block}.summaryGrid{display:grid;grid-template-columns:repeat(5,1fr);gap:12px;margin:18px 0}.stat{padding:16px;border:1px solid #dfe4ee;border-radius:16px;background:#fff}.stat b{display:block;font-size:26px;margin-top:5px}.reviewList{display:grid;gap:12px}.reviewItem{padding:16px;border:1px solid #dfe4ed;border-radius:16px;background:#fff}.reviewHead{display:flex;justify-content:space-between;gap:10px;margin-bottom:8px;font-weight:900}.flagged{color:#b45309;font-weight:900}.empty{padding:35px;text-align:center;color:#64748b}.hidden{display:none!important}
+@media(max-width:1050px){.layout{grid-template-columns:1fr}.side{position:static}.heroRow{flex-direction:column;align-items:flex-start}.heroStats{width:100%}.heroStat{flex:1}}
+@media(max-width:650px){.supportGrid{grid-template-columns:1fr}.summaryGrid{grid-template-columns:1fr 1fr}.sectionScoreGrid{grid-template-columns:1fr}.liveScoreInline{flex-wrap:wrap}.top{padding:0 14px}.page{padding:16px}.hero{padding:23px}.hero h1{font-size:25px}.prompt{font-size:18px;padding:18px}.summaryGrid{grid-template-columns:1fr 1fr}.controls .btn{flex:1}.back{padding:10px 12px}}
+</style>
+</head>
+<body>
+<header class="top"><div class="brand"><div class="logo">P</div><span>Full Mock Test</span></div><button class="back" onclick="location.href='index.html'">← Dashboard</button></header>
+<main class="page">
+<section class="hero"><div class="heroRow"><div><h1>📝 Full Random PTE Mock Test</h1><p>One 2-hour exam-style practice session using a fresh random selection from your completed PTE question sheets.</p></div><div class="heroStats"><div class="heroStat"><b id="heroQuestions">—</b><small>questions</small></div><div class="heroStat"><b>2:00</b><small>exam time</small></div><div class="heroStat"><b>Random</b><small>question set</small></div></div></div></section>
+
+<section id="startScreen" class="card practice"><div class="statusLine"><div><div class="eyebrow">FINAL PRACTICE MODE</div><div class="taskTitle">Ready to start your full mock?</div><div class="meta">Each attempt receives a stable random set. Speaking tasks use microphone controls instead of typing.</div></div><span class="pill">Ready</span></div><div class="hint">The timer starts only after you begin. Solutions, transcripts, template images and explanations are available in final review.</div><button id="startMock" class="btn primary" disabled>Loading Questions...</button></section>
+
+<div id="testArea" class="layout hidden">
+<section class="card practice">
+<div id="tabs" class="tabs"></div>
+<div class="statusLine"><div><div id="sectionEyebrow" class="eyebrow">SECTION</div><div id="taskTitle" class="taskTitle">Loading...</div><div id="taskMeta" class="meta"></div></div><span id="sectionPill" class="pill">Practice</span></div>
+<div id="questionLabel" class="questionLabel">QUESTION</div>
+<div id="questionPrompt" class="prompt"></div>
+<div id="hint" class="hint"></div>
+<div id="answerArea"></div>
+<div id="liveScoreInline" class="liveScoreInline"><strong>Live Practice Score</strong><span id="liveScoreText">Answer the task to calculate your practice score.</span><span id="liveQuestionBadge" class="scoreBadge">—</span></div>
+<div id="solution" class="solution"></div>
+<div class="controls"><button id="prevBtn" class="btn">← Previous</button><div class="jump"><label for="jumpInput">Question</label><input id="jumpInput" type="number" min="1" inputmode="numeric"><button id="jumpGo" class="btn">Go</button></div><button id="nextBtn" class="btn">Next →</button><button id="flagBtn" class="btn">⚑ Flag</button><button id="finishBtn" class="btn primary">Finish & Review</button></div>
+<div class="progressWrap"><div class="progressText"><span id="progressLeft">Question</span><span id="answeredText">0 answered</span></div><div class="bar"><div id="progressFill" class="fill"></div></div></div>
+</section>
+<aside class="card side"><h3>Exam controls</h3><div id="timer" class="timer">2:00:00</div><div id="timerState" class="meta">Ready</div><div class="sideActions"><button id="pauseBtn" class="btn">Pause</button><button id="endBtn" class="btn primary">Finish Test</button></div><div class="liveScoreCard"><div class="liveScoreHead"><b>Live Practice Score</b><span id="liveScoreMode" class="pill">Estimated</span></div><div id="liveOverallScore" class="liveScoreValue">0 / 0</div><div id="liveOverallSub" class="scoreSub">Score updates as you answer.</div><div class="scoreRows"><div class="scoreRow"><span>Current section</span><b id="liveSectionScore">0 / 0</b></div><div class="scoreRow"><span>Answered</span><b id="liveAnswered">0</b></div><div class="scoreRow"><span>Current question</span><b id="liveQuestionScore">—</b></div></div></div><div id="sectionList" class="sectionList"></div><div class="hint" style="margin-top:16px">Practice scoring is live. Objective answers are checked against the key; speaking and open responses use an estimated practice score.</div></aside>
+</div>
+
+<section id="sectionComplete" class="card sectionComplete"><div class="eyebrow">SECTION COMPLETE</div><h2 id="sectionCompleteTitle">Section complete</h2><div id="sectionCompleteMeta" class="meta">Review your practice score before continuing.</div><div class="sectionScoreGrid"><div class="sectionScoreStat"><span>Section marks</span><b id="sectionCompleteScore">0 / 0</b></div><div class="sectionScoreStat"><span>Answered</span><b id="sectionCompleteAnswered">0 / 0</b></div><div class="sectionScoreStat"><span>Accuracy / estimate</span><b id="sectionCompleteAccuracy">—</b></div><div class="sectionScoreStat"><span>Overall marks</span><b id="sectionCompleteOverall">0 / 0</b></div></div><div id="sectionReviewList" class="sectionReviewList"></div><div class="controls"><button id="continueSectionBtn" class="btn primary">Continue to Next Section →</button><button id="sectionBackBtn" class="btn">← Back to Section</button></div></section>
+
+<section id="summary" class="card summary"><div class="eyebrow">FINAL REVIEW</div><div class="taskTitle">Mock test complete</div><div class="summaryGrid"><div class="stat"><span>Questions</span><b id="sumQuestions">—</b></div><div class="stat"><span>Answered</span><b id="sumAnswered">—</b></div><div class="stat"><span>Objective accuracy</span><b id="sumAccuracy">—</b></div><div class="stat"><span>Time used</span><b id="sumTime">—</b></div><div class="stat"><span>Total practice marks</span><b id="sumMarks">—</b></div></div><div id="reviewList" class="reviewList"></div><div class="controls"><button id="reviewAgain" class="btn">Review Questions</button><button id="newMock" class="btn primary">New Random Mock</button></div></section>
+</main>
+
+<script>
+const API_URL='https://script.google.com/macros/s/AKfycbytEPdMZdkgsnQVfKcb5HUoDWKnTGPNQb5LA-osdkAGF2ygPGZiYPxpzrdzEmPvb-9Bkw/exec';
+const KEY='pte_full_mock_state_v4';
+const DURATION=120*60;
+const $=id=>document.getElementById(id);
+const esc=v=>String(v??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const norm=v=>String(v??'').trim().toLowerCase().replace(/\s+/g,' ');
+let state={questions:[],index:0,answers:{},flags:{},started:false,paused:false,finished:false,remaining:DURATION,seed:'',interval:null,reviewMode:false,ready:false,sectionCheckpoint:null,supportVisibility:{template:false,solution:false,transcript:false}};
+let recognition=null, mediaRecorder=null, mediaStream=null, activeSpeechIndex=null;
+
+function jsonp(action,params={}){
+  return new Promise((resolve,reject)=>{
+    const cb='pteMockCb_'+Date.now()+'_'+Math.random().toString(36).slice(2);
+    const q=new URLSearchParams({...params,action,callback:cb});
+    const s=document.createElement('script');
+    const timer=setTimeout(()=>cleanup(new Error('Backend timeout. Check the Apps Script URL and deployment.')),25000);
+    function cleanup(err){clearTimeout(timer);delete window[cb];s.remove();if(err)reject(err)}
+    window[cb]=data=>{clearTimeout(timer);delete window[cb];s.remove();resolve(data)};
+    s.onerror=()=>cleanup(new Error('Backend connection failed.'));
+    s.src=API_URL+(API_URL.includes('?')?'&':'?')+q.toString();
+    document.head.appendChild(s);
+  });
+}
+function makeSeed(){return Date.now()+'-'+Math.random().toString(36).slice(2)}
+function setStartLoading(loading,message){$('startMock').disabled=loading||!state.ready;$('startMock').textContent=loading?(message||'Loading Questions...'):'▶ Start 2-Hour Mock Test'}
+async function loadMock(seed){
+  state.ready=false;setStartLoading(true,'Loading Questions...');
+  const data=await jsonp('mockRandom',{seed});
+  if(!data||!data.ok||!data.mock||!Array.isArray(data.mock.questions)||!data.mock.questions.length) throw new Error((data&&data.error)||'No questions found in the completed PTE sheets.');
+  state.questions=data.mock.questions;state.seed=data.mock.seed||seed;state.ready=true;$('heroQuestions').textContent=state.questions.length;
+  buildTabs();buildSectionList();setStartLoading(false);save();
+}
+function buildTabs(){
+  const sections=[...new Set(state.questions.map(q=>q.section||'Practice'))];
+  $('tabs').innerHTML=sections.map(s=>`<button class="tab" data-section="${esc(s)}">${esc(s)} <small>(${state.questions.filter(q=>(q.section||'Practice')===s).length})</small></button>`).join('');
+  [...$('tabs').querySelectorAll('.tab')].forEach(b=>b.onclick=()=>{const i=state.questions.findIndex(q=>(q.section||'Practice')===b.dataset.section);if(i>=0){state.index=i;render();}});
+}
+function buildSectionList(){
+  const sections=[...new Set(state.questions.map(q=>q.section||'Practice'))];
+  $('sectionList').innerHTML=sections.map(s=>`<div class="sectionRow"><span>${esc(s)}</span><b>${state.questions.filter(q=>(q.section||'Practice')===s).length} Q</b></div>`).join('');
+}
+const SPEAKING=new Set(['personalIntroduction','readAloud','repeatSentence','describeImage','retellLecture','answerShortQuestion','summarizeGroupDiscussion','respondSituation']);
+const LONG_TEXT=new Set(['summarizeWrittenText','essay','summarizeSpoken']);
+const MULTI=new Set(['readingMCQMultiple','listeningMCQMultiple']);
+const OBJECTIVE=new Set(['readingMCQMultiple','readingMCQSingle','highlightSummary','listeningMCQMultiple','listeningMCQSingle','missingWord','readingRWBlanks','readingBlanks','listeningBlanks','dictation','reorderParagraph']);
+function instruction(q){
+ const m={personalIntroduction:'Introduce yourself naturally using the microphone.',readAloud:'Read the text aloud clearly and naturally.',repeatSentence:'Listen carefully, then repeat the sentence using the microphone.',describeImage:'Study the image and describe the key information using the microphone.',retellLecture:'Listen to the lecture and retell the key points using the microphone.',answerShortQuestion:'Listen to the question and give a short spoken answer.',summarizeGroupDiscussion:'Listen and summarize the discussion using the microphone.',respondSituation:'Respond to the situation naturally using the microphone.',summarizeWrittenText:'Write a concise summary using the key ideas.',essay:'Write a well-organized essay answering the prompt.',readingRWBlanks:'Choose the best word for each blank.',readingMCQMultiple:'Select all answers that are correct.',reorderParagraph:'Put the sentences in the best logical order.',readingBlanks:'Complete the text using the best available words.',readingMCQSingle:'Select the best answer.',summarizeSpoken:'Listen and write a concise summary.',listeningMCQMultiple:'Listen and select all correct answers.',listeningBlanks:'Listen and complete the missing words.',highlightSummary:'Listen and choose the best summary.',listeningMCQSingle:'Listen and select the best answer.',missingWord:'Listen and choose the missing word.',incorrectWords:'Listen and identify the incorrect words.',dictation:'Listen and type exactly what you hear.'};return m[q.sourceTask]||'Complete the task and continue when ready.'
+}
+function render(){
+ stopSpeakingTools();
+ const q=state.questions[state.index];if(!q)return;
+ window.PTEProgress?.setContext('Full Mock',q.sourceTask||q.section||'Mock',state.index,q);
+ $('sectionEyebrow').textContent=(q.section||'PRACTICE').toUpperCase();$('taskTitle').textContent=q.taskLabel||q.sourceTask||'Practice';$('taskMeta').textContent=instruction(q);$('sectionPill').textContent=q.section||'Practice';
+ $('questionLabel').textContent=`QUESTION ${state.index+1} OF ${state.questions.length}${state.flags[state.index]?' • FLAGGED':''}`;$('jumpInput').max=state.questions.length;$('jumpInput').value=state.index+1;
+ [...$('tabs').querySelectorAll('.tab')].forEach(b=>b.classList.toggle('active',b.dataset.section===(q.section||'Practice')));
+ renderPrompt(q);$('hint').textContent=instruction(q);renderInteraction(q);renderSolution(q);
+ $('prevBtn').disabled=state.index===0;$('nextBtn').textContent=state.index===state.questions.length-1?'Finish →':'Next →';$('flagBtn').textContent=state.flags[state.index]?'⚑ Unflag':'⚑ Flag';renderProgress();save();
+}
+function renderPrompt(q){
+ const text=q.text||q.question||q.prompt||'';
+ let html='';
+ if(q.imageUrl)html+=`<img src="${esc(q.imageUrl)}" alt="Question image" onerror="this.style.display='none'">`;
+ if(text)html+=`<div>${esc(text).replace(/\n/g,'<br>')}</div>`;
+ if(q.audioUrl)html+=`<div class="audioBox"><audio controls preload="metadata" src="${esc(q.audioUrl)}" onerror="this.closest('.audioBox').insertAdjacentHTML('beforeend','<div class=&quot;meta&quot;>Audio could not be loaded.</div>')"></audio></div>`;
+ if(!html)html='<div class="empty">Question content is unavailable for this item.</div>';
+ $('questionPrompt').innerHTML=html;
+}
+function optionsOf(q){return Array.isArray(q.options)?q.options.filter(x=>String(x).trim()!==''):[]}
+function renderInteraction(q){
+ const key=String(state.index),a=state.answers[key],opts=optionsOf(q);
+ if(SPEAKING.has(q.sourceTask)){renderSpeaking(q);return}
+ if(q.sourceTask==='reorderParagraph'){renderReorder(q);return}
+ if(['readingRWBlanks','readingBlanks','listeningBlanks'].includes(q.sourceTask) && opts.length){renderFillBlanks(q);return}
+ if(opts.length){renderOptions(q,opts);return}
+ const long=LONG_TEXT.has(q.sourceTask);
+ $('answerArea').innerHTML=`<div class="answerBox">${long?`<textarea id="freeAnswer" placeholder="Write your response here...">${esc(a||'')}</textarea>`:`<input id="freeAnswer" placeholder="Type your answer here..." value="${esc(a||'')}">`}</div>`;
+ $('freeAnswer').oninput=e=>{state.answers[key]=e.target.value;renderProgress();save()}
+}
+function renderSpeaking(q){
+ const key=String(state.index),entry=state.answers[key]&&typeof state.answers[key]==='object'?state.answers[key]:{transcript:'',attempted:false};
+ state.answers[key]=entry;
+ $('answerArea').innerHTML=`<div class="speakingPanel"><div class="micRow"><button id="startSpeak" class="btn primary">🎤 Start Speaking</button><button id="stopSpeak" class="btn danger" disabled>■ Stop</button><button id="markAttempted" class="btn">✓ Mark Attempted</button><span id="micStatus" class="micStatus">Ready</span></div><div id="liveTranscript" class="liveTranscript ${entry.transcript?'':'empty'}">${entry.transcript?esc(entry.transcript):'Your spoken transcript will appear here when browser speech recognition is available.'}</div><div class="attemptMark">${entry.attempted?'Attempt recorded.':'Use the microphone to practise. No typing is required for this speaking task.'}</div></div>`;
+ $('startSpeak').onclick=startSpeaking;$('stopSpeak').onclick=stopSpeaking;$('markAttempted').onclick=()=>{entry.attempted=true;state.answers[key]=entry;renderInteraction(q);renderProgress();save()}
+}
+async function startSpeaking(){
+ const q=state.questions[state.index],key=String(state.index),entry=state.answers[key]||{transcript:'',attempted:false};activeSpeechIndex=state.index;
+ $('startSpeak').disabled=true;$('stopSpeak').disabled=false;$('micStatus').textContent='Listening...';
+ try{
+   if(navigator.mediaDevices&&navigator.mediaDevices.getUserMedia){
+     mediaStream=await navigator.mediaDevices.getUserMedia({audio:true});
+     if(window.MediaRecorder){mediaRecorder=new MediaRecorder(mediaStream);mediaRecorder.start();}
+   }
+ }catch(e){$('micStatus').textContent='Microphone permission unavailable; you can still mark this task attempted.'}
+ const SR=window.SpeechRecognition||window.webkitSpeechRecognition;
+ if(SR){
+   recognition=new SR();recognition.lang='en-IN';recognition.continuous=true;recognition.interimResults=true;
+   recognition.onresult=e=>{let finalText='',interim='';for(let i=e.resultIndex;i<e.results.length;i++){const t=e.results[i][0].transcript;if(e.results[i].isFinal)finalText+=t+' ';else interim+=t+' '}if(finalText){entry.transcript=(entry.transcript+' '+finalText).trim();entry.attempted=true;state.answers[key]=entry;save();renderProgress()}const box=$('liveTranscript');if(box){const shown=[entry.transcript,interim.trim()].filter(Boolean).join(' ');box.textContent=shown||'Listening...';box.classList.toggle('empty',!shown)}};
+   recognition.onerror=e=>{$('micStatus').textContent='Speech recognition: '+e.error};
+   recognition.onend=()=>{if(activeSpeechIndex===state.index&&$('stopSpeak')&&!$('stopSpeak').disabled){$('micStatus').textContent='Listening paused. Press Stop to finish.'}};
+   try{recognition.start()}catch(e){}
+ }else $('micStatus').textContent='Recording is active. Browser speech recognition is not available.';
+}
+function stopSpeaking(){
+ if(recognition){try{recognition.stop()}catch(e){}recognition=null}
+ if(mediaRecorder){try{if(mediaRecorder.state!=='inactive')mediaRecorder.stop()}catch(e){}mediaRecorder=null}
+ if(mediaStream){mediaStream.getTracks().forEach(t=>t.stop());mediaStream=null}
+ activeSpeechIndex=null;
+ if($('startSpeak'))$('startSpeak').disabled=false;if($('stopSpeak'))$('stopSpeak').disabled=true;if($('micStatus'))$('micStatus').textContent='Stopped';
+ const key=String(state.index);if(state.answers[key]&&typeof state.answers[key]==='object'){state.answers[key].attempted=true;save();renderProgress()}
+}
+function stopSpeakingTools(){try{stopSpeaking()}catch(e){}}
+function renderOptions(q,opts){
+ const key=String(state.index),a=state.answers[key],multi=MULTI.has(q.sourceTask),selected=multi?(Array.isArray(a)?a:[]):[a];
+ $('answerArea').innerHTML=`<div class="options">${opts.map((o,i)=>`<label class="option"><input type="${multi?'checkbox':'radio'}" name="answer" value="${i}" ${selected.includes(i)?'checked':''}><span>${esc(o)}</span></label>`).join('')}</div>`;
+ $('answerArea').querySelectorAll('input').forEach(inp=>inp.onchange=()=>{state.answers[key]=multi?[...$('answerArea').querySelectorAll('input:checked')].map(x=>+x.value):+$('answerArea').querySelector('input:checked').value;renderProgress();save()})
+}
+function renderFillBlanks(q){
+ const key=String(state.index),opts=optionsOf(q),count=Math.max(1,(String(q.text||q.question||q.prompt||'').match(/_{2,}|\[\s*\]|\{\s*\}/g)||[]).length);
+ let vals=Array.isArray(state.answers[key])?state.answers[key]:Array(count).fill('');
+ $('answerArea').innerHTML=`<div class="answerBox"><div class="fillRow">${Array.from({length:count},(_,i)=>`<select class="fillSelect" data-i="${i}"><option value="">Select blank ${i+1}</option>${opts.map((o,j)=>`<option value="${j}" ${String(vals[i])===String(j)?'selected':''}>${esc(o)}</option>`).join('')}</select>`).join('')}</div></div>`;
+ $('answerArea').querySelectorAll('.fillSelect').forEach(s=>s.onchange=()=>{vals[+s.dataset.i]=s.value;state.answers[key]=vals;renderProgress();save()})
+}
+function renderReorder(q){
+ const key=String(state.index),opts=optionsOf(q),a=Array.isArray(state.answers[key])?state.answers[key]:(opts.length?opts.slice():String(q.answer||'').split(/\s*\|\s*/).filter(Boolean));
+ if(!Array.isArray(state.answers[key]))state.answers[key]=a.slice();
+ $('answerArea').innerHTML=`<div class="reorder">${a.map((x,i)=>`<div class="reorderItem"><span>${esc(x)}</span><button class="mini" data-up="${i}">↑</button><button class="mini" data-down="${i}">↓</button></div>`).join('')}</div>`;
+ $('answerArea').querySelectorAll('[data-up]').forEach(b=>b.onclick=()=>moveReorder(+b.dataset.up,-1));$('answerArea').querySelectorAll('[data-down]').forEach(b=>b.onclick=()=>moveReorder(+b.dataset.down,1))
+}
+function moveReorder(i,d){const key=String(state.index),a=state.answers[key].slice(),j=i+d;if(j<0||j>=a.length)return;[a[i],a[j]]=[a[j],a[i]];state.answers[key]=a;render()}
+
+function marksOf(q){const n=Number(q&&q.marks);return Number.isFinite(n)&&n>0?n:1}
+function tokenSet(v){return new Set(norm(v).split(/\s+/).filter(x=>x&&x.length>1))}
+function textSimilarity(a,b){const A=tokenSet(a),B=tokenSet(b);if(!A.size||!B.size)return 0;let hit=0;A.forEach(x=>{if(B.has(x))hit++});const overlap=hit/B.size;const lengthFactor=Math.min(1,Math.max(0.25,String(a||'').trim().split(/\s+/).filter(Boolean).length/Math.max(1,String(b||'').trim().split(/\s+/).filter(Boolean).length)));return Math.max(0,Math.min(1,overlap*0.75+lengthFactor*0.25))}
+function scoreQuestion(q,i){
+ const marks=marksOf(q),a=state.answers[String(i)];
+ if(!isAnswered(a))return {earned:0,possible:marks,status:'unanswered',exact:false};
+ const task=String(q.sourceTask||'');
+ if(OBJECTIVE.has(task) && window.PTETaskScoring){
+   const graded=PTETaskScoring.grade(q,a);
+   if(graded.supported){const fraction=graded.possible?graded.earned/graded.possible:0;
+     return {earned:Math.round(marks*fraction*10)/10,possible:marks,status:graded.exact?'correct':'partial',exact:graded.exact,detail:graded.reason};}
+ }
+ // Do not award invented marks for open speaking/writing responses.
+ return {earned:0,possible:marks,status:'needs-review',exact:false,detail:'Not automatically graded; requires qualified evaluation'};
+}
+function scoreIndices(indices){let earned=0,possible=0,answered=0,exactPossible=0,exactCorrect=0;indices.forEach(i=>{const q=state.questions[i],s=scoreQuestion(q,i);earned+=s.earned;possible+=s.possible;if(isAnswered(state.answers[String(i)]))answered++;if(OBJECTIVE.has(q.sourceTask)&&isAnswered(state.answers[String(i)])){exactPossible++;if(s.exact)exactCorrect++}});return {earned:Math.round(earned*10)/10,possible:Math.round(possible*10)/10,answered,exactPossible,exactCorrect}}
+function sectionIndices(section){return state.questions.map((q,i)=>((q.section||'Practice')===section?i:-1)).filter(i=>i>=0)}
+function formatScore(v){return Number.isInteger(v)?String(v):v.toFixed(1)}
+function updateLiveScore(){
+ const q=state.questions[state.index];if(!q)return;const all=state.questions.map((_,i)=>i),sec=sectionIndices(q.section||'Practice'),allScore=scoreIndices(all),secScore=scoreIndices(sec),qs=scoreQuestion(q,state.index),answered=countAnswered();
+ if($('liveOverallScore'))$('liveOverallScore').textContent=`${formatScore(allScore.earned)} / ${formatScore(allScore.possible)}`;
+ if($('liveOverallSub'))$('liveOverallSub').textContent=`${answered} answered • ${allScore.exactPossible?allScore.exactCorrect+' / '+allScore.exactPossible+' objective correct':'open responses not auto-scored'}`;
+ if($('liveSectionScore'))$('liveSectionScore').textContent=`${formatScore(secScore.earned)} / ${formatScore(secScore.possible)}`;
+ if($('liveAnswered'))$('liveAnswered').textContent=answered;
+ if($('liveQuestionScore'))$('liveQuestionScore').textContent=isAnswered(state.answers[String(state.index)])?`${formatScore(qs.earned)} / ${formatScore(qs.possible)}`:'—';
+ if($('liveScoreMode'))$('liveScoreMode').textContent=OBJECTIVE.has(q.sourceTask)?'Live':'Practice grading';
+ if($('liveScoreText'))$('liveScoreText').textContent=isAnswered(state.answers[String(state.index)])?(OBJECTIVE.has(q.sourceTask)?(qs.exact?'Correct answer detected.':'Practice answer recorded. Check the solution in review.'):'Response recorded; open-response tasks require review.'):'Answer the task to calculate your practice score.';
+ if($('liveQuestionBadge')){$('liveQuestionBadge').textContent=isAnswered(state.answers[String(state.index)])?`${formatScore(qs.earned)} / ${formatScore(qs.possible)}`:'—';$('liveQuestionBadge').className='scoreBadge '+(qs.status==='correct'?'scoreGood':qs.status==='incorrect'?'scoreBad':'scoreNeutral')}
+}
+
+function renderSolution(q){
+ const a=state.answers[String(state.index)];
+ const liveTranscript=(a&&typeof a==='object'&&String(a.transcript||'').trim())?a.transcript:'';
+ const v=state.supportVisibility||{template:false,solution:false,transcript:false};
+ const parts=[];
+ parts.push(`<div class="solutionHead"><div><div class="eyebrow">QUESTION SUPPORT</div><h3>Solution & Learning</h3></div><span class="pill">Show / Hide</span></div>`);
+ parts.push(`<div class="supportToggles">
+   <button class="supportToggle ${v.template?'active':''}" onclick="toggleSupport('template')">🖼️ Template Image</button>
+   <button class="supportToggle ${v.solution?'active':''}" onclick="toggleSupport('solution')">✅ Solution / Model Answer</button>
+   <button class="supportToggle ${v.transcript?'active':''}" onclick="toggleSupport('transcript')">📝 Transcript</button>
+ </div>`);
+ parts.push(`<div class="supportGrid">`);
+ if(v.solution) parts.push(`<div class="supportItem supportSection"><b>Solution / Model answer</b><div class="supportText">${q.answer?esc(q.answer):'No model answer is provided for this question.'}</div></div>`);
+ if(v.transcript) parts.push(`<div class="supportItem supportSection"><b>Transcript</b><div class="supportText ${q.transcript?'':'mutedSupport'}">${q.transcript?esc(q.transcript):'No transcript is provided for this question.'}</div></div>`);
+ if(liveTranscript) parts.push(`<div class="supportItem supportSection"><b>Live transcribed text</b><div class="supportText">${esc(liveTranscript)}</div></div>`);
+ parts.push(`</div>`);
+ if(v.template){
+   if(q.templateImageUrl){
+     parts.push(`<div class="templateBlock supportSection"><b>Template image</b><img class="templatePreview" src="${esc(q.templateImageUrl)}" alt="Template image" onerror="this.style.display='none'"><div class="resourceRow"><a class="resource" target="_blank" rel="noopener" href="${esc(q.templateImageUrl)}">🖼️ Open Template Image</a></div></div>`);
+   } else {
+     parts.push(`<div class="templateBlock supportSection"><b>Template image</b><div class="supportText mutedSupport">No template image is available for this question.</div></div>`);
+   }
+ }
+ if(q.resourceUrl) parts.push(`<div class="resourceRow"><a class="resource" target="_blank" rel="noopener" href="${esc(q.resourceUrl)}">↗ Open Resource</a></div>`);
+ $('solution').innerHTML=parts.join('');
+ $('solution').classList.add('show');
+}
+
+function toggleSupport(key){
+ state.supportVisibility=state.supportVisibility||{template:false,solution:false,transcript:false};
+ state.supportVisibility[key]=!state.supportVisibility[key];
+ renderSolution(state.questions[state.index]);
+ save();
+}
+
+function isAnswered(v){if(Array.isArray(v))return v.some(x=>String(x).trim()!=='');if(v&&typeof v==='object')return !!(v.attempted||String(v.transcript||'').trim());return String(v??'').trim()!==''}
+function countAnswered(){return Object.values(state.answers).filter(isAnswered).length}
+function renderProgress(){const answered=countAnswered();$('answeredText').textContent=`${answered} answered • ${Object.keys(state.flags).length} flagged`;$('progressLeft').textContent=`Question ${state.index+1} of ${state.questions.length}`;$('progressFill').style.width=((state.index+1)/Math.max(1,state.questions.length)*100)+'%';updateLiveScore()}
+function startTimer(){clearInterval(state.interval);state.interval=setInterval(()=>{if(state.paused||state.finished)return;state.remaining=Math.max(0,state.remaining-1);updateTimer();if(state.remaining===0)finishMock(true)},1000)}
+function updateTimer(){const h=Math.floor(state.remaining/3600),m=Math.floor(state.remaining%3600/60),s=state.remaining%60;$('timer').textContent=`${h}:${String(m).padStart(2,'0')}:${String(s).padStart(2,'0')}`;$('timerState').textContent=state.paused?'Paused':state.started?'Running':'Ready'}
+function startMock(){if(!state.ready||!state.questions.length)return;state.started=true;state.finished=false;state.reviewMode=false;state.paused=false;$('startScreen').classList.add('hidden');$('testArea').classList.remove('hidden');updateTimer();startTimer();render();save()}
+
+function sectionHasLater(section){const idx=state.questions.findIndex((q,i)=>i>state.index&&(q.section||'Practice')!==section);return idx>=0}
+function buildSectionReview(section){
+ const ids=sectionIndices(section),s=scoreIndices(ids),overall=scoreIndices(state.questions.map((_,i)=>i));
+ const accuracy=s.exactPossible?Math.round(s.exactCorrect/s.exactPossible*100)+'%':'Practice grading';
+ $('sectionCompleteTitle').textContent=`${section} complete`;
+ $('sectionCompleteMeta').textContent=`Section marks: ${formatScore(s.earned)} / ${formatScore(s.possible)} • Overall marks so far: ${formatScore(overall.earned)} / ${formatScore(overall.possible)}`;
+ $('sectionCompleteScore').textContent=`${formatScore(s.earned)} / ${formatScore(s.possible)}`;
+ $('sectionCompleteAnswered').textContent=`${s.answered} / ${ids.length}`;
+ $('sectionCompleteAccuracy').textContent=accuracy;
+ if($('sectionCompleteOverall')) $('sectionCompleteOverall').textContent=`${formatScore(overall.earned)} / ${formatScore(overall.possible)}`;
+ $('sectionReviewList').innerHTML=ids.map(i=>{
+   const q=state.questions[i],qs=scoreQuestion(q,i);
+   const text=q.text||q.question||q.prompt||'Audio/Image task';
+   return `<article class="sectionReviewItem">
+     <div class="reviewQuestionHead"><div><div class="eyebrow">QUESTION ${i+1}</div><h4>${esc(q.taskLabel||q.sourceTask)}</h4></div><span class="scoreBadge ${qs.status==='correct'?'scoreGood':qs.status==='incorrect'?'scoreBad':'scoreNeutral'}">${formatScore(qs.earned)} / ${formatScore(qs.possible)} marks</span></div>
+     <div class="sectionQuestionText">${esc(text).replace(/\n/g,'<br>')}</div>
+     <div class="reviewMarkLine"><span>Individual question marks</span><b>${formatScore(qs.earned)} / ${formatScore(qs.possible)}</b></div>
+   </article>`;
+ }).join('');
+}
+
+function showSectionCheckpoint(section){stopSpeakingTools();state.sectionCheckpoint=section;state.paused=true;updateTimer();$('testArea').classList.add('hidden');$('sectionComplete').classList.add('show');buildSectionReview(section);save()}
+function continueAfterSection(){const section=state.sectionCheckpoint;const next=state.questions.findIndex((q,i)=>i>state.index&&(q.section||'Practice')!==section);$('sectionComplete').classList.remove('show');$('testArea').classList.remove('hidden');state.sectionCheckpoint=null;state.paused=false;if(next>=0)state.index=next;updateTimer();render();save()}
+function backToSection(){const section=state.sectionCheckpoint;$('sectionComplete').classList.remove('show');$('testArea').classList.remove('hidden');state.sectionCheckpoint=null;state.paused=false;updateTimer();render();save()}
+
+function recordFinishedMockQuestions(){
+ if(!window.PTEProgress?.active())return;
+ state.questions.forEach((q,i)=>{
+   if(!isAnswered(state.answers[String(i)]))return;
+   const task=q.sourceTask||q.taskLabel||'Mock';
+   const context={module:'Full Mock',item:task+' / Question '+(i+1),questionId:String(q.id||i+1)};
+   const result=scoreQuestion(q,i);
+   const score=OBJECTIVE.has(q.sourceTask)&&Number.isFinite(result.earned)?result.earned:null;
+   window.PTEProgress.markScore(score,{context});
+ });
+}
+function finishMock(force){if(state.finished)return;if(!force&&!confirm('Finish the mock test and open final review?'))return;stopSpeakingTools();state.finished=true;state.reviewMode=true;clearInterval(state.interval);$('testArea').classList.add('hidden');$('summary').classList.add('show');buildSummary();recordFinishedMockQuestions();save()}
+function expectedCorrect(q,i){
+ const a=state.answers[String(i)];if(!isAnswered(a)||!q.answer||!OBJECTIVE.has(q.sourceTask))return null;const ans=String(q.answer),opts=optionsOf(q);
+ if(q.sourceTask==='reorderParagraph')return norm((Array.isArray(a)?a.join(' | '):a))===norm(ans);
+ if(['readingRWBlanks','readingBlanks','listeningBlanks'].includes(q.sourceTask)){const chosen=(Array.isArray(a)?a:[]).map(x=>opts[+x]||'').join(' | ');return norm(chosen)===norm(ans)}
+ if(opts.length){const expected=ans.split(/\s*\|\s*|\s*,\s*/).map(norm).filter(Boolean);const chosen=(Array.isArray(a)?a:[a]).map(i=>norm(opts[i])).filter(Boolean);return expected.length===chosen.length&&expected.every(x=>chosen.includes(x))}
+ return norm(a)===norm(ans)
+}
+function responseText(q,i){const a=state.answers[String(i)];if(!isAnswered(a))return'Not answered';if(a&&typeof a==='object')return a.transcript||'Spoken attempt recorded';if(Array.isArray(a)){if(['readingRWBlanks','readingBlanks','listeningBlanks'].includes(q.sourceTask))return a.map(x=>optionsOf(q)[+x]||'').filter(Boolean).join(' | ');return a.map(x=>optionsOf(q)[+x]||x).join(' | ')}return String(a)}
+function buildSummary(){
+ const total=state.questions.length,answered=countAnswered(),objective=state.questions.map(expectedCorrect).filter(x=>x!==null),correct=objective.filter(Boolean).length,live=scoreIndices(state.questions.map((_,i)=>i));
+ $('sumQuestions').textContent=total;
+ $('sumAnswered').textContent=answered;
+ $('sumAccuracy').textContent=objective.length?Math.round(correct/objective.length*100)+'%':'Practice grading';
+ const used=DURATION-state.remaining;
+ $('sumTime').textContent=`${String(Math.floor(used/60)).padStart(2,'0')}:${String(used%60).padStart(2,'0')}`;
+ $('sumMarks').textContent=`${formatScore(live.earned)} / ${formatScore(live.possible)}`;
+ $('reviewList').innerHTML=state.questions.map((q,i)=>{
+   const key='review_'+i;
+   const v=state.reviewVisibility?.[i]||{template:false,solution:false,transcript:false};
+   const answer=q.answer?`<div class="reviewSupport ${v.solution?'':'supportHidden'}"><b>Solution / Model answer:</b> ${esc(q.answer)}</div>`:'';
+   const transcript=q.transcript?`<div class="reviewSupport ${v.transcript?'':'supportHidden'}"><b>Transcript:</b><div style="margin-top:7px;white-space:pre-wrap">${esc(q.transcript)}</div></div>`:'';
+   const template=q.templateImageUrl?`<div class="reviewSupport ${v.template?'':'supportHidden'}"><b>Template image:</b><br><img class="templatePreview" src="${esc(q.templateImageUrl)}" alt="Template image" onerror="this.style.display='none'"><div class="resourceRow"><a class="resource" target="_blank" rel="noopener" href="${esc(q.templateImageUrl)}">🖼️ Open Template Image</a></div></div>`:'';
+   return `<article class="reviewItem">
+     <div class="reviewHead"><span>Q${i+1} • ${esc(q.taskLabel||q.sourceTask)}</span><span>${state.flags[i]?'<span class="flagged">Flagged</span>':''}</span></div>
+     <div class="meta">${esc(q.text||q.question||q.prompt||'Audio/Image task').slice(0,420)}</div>
+     <div style="margin-top:8px"><b>Your response:</b> ${esc(responseText(q,i))}</div>
+     <div class="reviewToggleRow">
+       ${q.templateImageUrl?`<button class="reviewToggle ${v.template?'active':''}" onclick="toggleReviewSupport(${i},'template')">🖼️ Template ${v.template?'Hide':'Show'}</button>`:''}
+       ${q.answer?`<button class="reviewToggle ${v.solution?'active':''}" onclick="toggleReviewSupport(${i},'solution')">✅ Solution ${v.solution?'Hide':'Show'}</button>`:''}
+       ${q.transcript?`<button class="reviewToggle ${v.transcript?'active':''}" onclick="toggleReviewSupport(${i},'transcript')">📝 Transcript ${v.transcript?'Hide':'Show'}</button>`:''}
+     </div>
+     ${answer}${explanation}${transcript}${template}
+     ${q.resourceUrl?`<div class="resourceRow"><a class="resource" target="_blank" rel="noopener" href="${esc(q.resourceUrl)}">↗ Open Resource</a></div>`:''}
+   </article>`;
+ }).join('')
+}
+function toggleReviewSupport(index,key){
+ state.reviewVisibility=state.reviewVisibility||{};
+ state.reviewVisibility[index]=state.reviewVisibility[index]||{template:false,solution:false,transcript:false};
+ state.reviewVisibility[index][key]=!state.reviewVisibility[index][key];
+ buildSummary();
+ save();
+}
+
+function save(){try{localStorage.setItem(KEY,JSON.stringify({...state,interval:null}))}catch(e){}}
+function restore(){try{const raw=localStorage.getItem(KEY);if(!raw)return false;const saved=JSON.parse(raw);if(!saved||!Array.isArray(saved.questions)||!saved.questions.length)return false;Object.assign(state,saved,{interval:null,ready:true});state.supportVisibility=state.supportVisibility||{template:false,solution:false,transcript:false};$('heroQuestions').textContent=state.questions.length;buildTabs();buildSectionList();if(state.finished){$('startScreen').classList.add('hidden');$('summary').classList.add('show');buildSummary()}else if(state.sectionCheckpoint){$('startScreen').classList.add('hidden');$('sectionComplete').classList.add('show');buildSectionReview(state.sectionCheckpoint);updateTimer();startTimer()}else if(state.started){$('startScreen').classList.add('hidden');$('testArea').classList.remove('hidden');updateTimer();startTimer();render()}return true}catch(e){return false}}
+$('continueSectionBtn').onclick=continueAfterSection;$('sectionBackBtn').onclick=backToSection;$('startMock').onclick=startMock;$('prevBtn').onclick=()=>{if(state.index>0){state.index--;render()}};$('nextBtn').onclick=()=>{const current=state.questions[state.index],section=current.section||'Practice';if(state.index<state.questions.length-1){const nextSection=state.questions[state.index+1].section||'Practice';if(nextSection!==section){showSectionCheckpoint(section)}else{state.index++;render()}}else finishMock()};$('flagBtn').onclick=()=>{state.flags[state.index]?delete state.flags[state.index]:state.flags[state.index]=true;render()};$('jumpGo').onclick=()=>{const n=Math.trunc(Number($('jumpInput').value));if(n>=1&&n<=state.questions.length){state.index=n-1;render();window.scrollTo({top:0,behavior:'smooth'})}else alert('Enter a question number from 1 to '+state.questions.length)};$('jumpInput').onkeydown=e=>{if(e.key==='Enter')$('jumpGo').click()};$('pauseBtn').onclick=()=>{state.paused=!state.paused;$('pauseBtn').textContent=state.paused?'Resume':'Pause';updateTimer();save()};$('endBtn').onclick=()=>finishMock();$('finishBtn').onclick=()=>finishMock();$('reviewAgain').onclick=()=>{state.finished=false;state.reviewMode=true;state.started=true;$('summary').classList.remove('show');$('testArea').classList.remove('hidden');render()};$('newMock').onclick=async()=>{if(!confirm('Create a new random mock? Current attempt will be replaced.'))return;clearInterval(state.interval);stopSpeakingTools();localStorage.removeItem(KEY);state={questions:[],index:0,answers:{},flags:{},started:false,paused:false,finished:false,remaining:DURATION,seed:'',interval:null,reviewMode:false,ready:false,sectionCheckpoint:null};$('summary').classList.remove('show');$('sectionComplete').classList.remove('show');$('startScreen').classList.remove('hidden');try{await loadMock(makeSeed())}catch(e){$('startScreen').innerHTML=`<div class="empty"><h3>Unable to load Full Mock Test</h3><p>${esc(e.message)}</p><button class="btn primary" onclick="location.reload()">Retry</button></div>`}};
+(async()=>{setStartLoading(true,'Loading Questions...');try{if(!restore())await loadMock(makeSeed());else setStartLoading(false)}catch(e){$('startScreen').innerHTML=`<div class="empty"><h3>Unable to load Full Mock Test</h3><p>${esc(e.message)}</p><p>Update Code.gs with the Full Mock backend route, redeploy the Apps Script web app, then retry.</p><button class="btn primary" onclick="location.reload()">Retry</button></div>`}})();
+</script>
+<script src="free-evaluator.js"></script><script src="task-scoring.js"></script><script src="scoring-report.js"></script><script src="student-progress.js"></script><script src="sync-config.js"></script><script src="student-auth.js"></script><script src="cloud-sync.js"></script>
+<script src="selection-helper.js"></script>
+</body></html>

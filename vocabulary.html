@@ -1,0 +1,1070 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Vocabulary Learning</title>
+<style>
+:root{--bg:#f5f7fb;--card:#fff;--ink:#172238;--muted:#66758b;--line:#e2e7f0;--p:#5637d8;--p2:#7846ed}*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);font-family:Inter,Segoe UI,Arial,sans-serif}button{font:inherit;cursor:pointer}.top{height:72px;background:#fff;border-bottom:1px solid var(--line);display:flex;align-items:center;justify-content:space-between;padding:0 28px;position:sticky;top:0;z-index:20}.brand{display:flex;align-items:center;gap:11px;font-weight:900;font-size:19px}.logo{width:44px;height:44px;border-radius:14px;background:linear-gradient(135deg,var(--p),var(--p2));color:#fff;display:grid;place-items:center}.dashboard,.pageBtn{border:1px solid var(--line);background:#fff;border-radius:13px;padding:11px 17px;font-weight:850;color:#334155}.page{max-width:1450px;margin:auto;padding:22px 28px}.hero{background:linear-gradient(125deg,#2b1a6b,#5631bf 56%,#8048ed);color:#fff;border-radius:25px;padding:28px}.hero h1{margin:0;font-size:30px}.hero p{margin:9px 0 0;opacity:.9}.tabs{display:flex;gap:9px;overflow-x:auto;padding:18px 2px}.tab{white-space:nowrap;border:1px solid #ded8f3;background:#fff;border-radius:13px;padding:11px 15px;font-size:13px;font-weight:850}.tab.active,.primary{color:#fff;background:linear-gradient(135deg,var(--p),var(--p2));border-color:transparent}.control{background:#fff;border:1px solid var(--line);border-radius:20px;padding:16px 18px;display:flex;justify-content:space-between;gap:15px;align-items:center;position:sticky;top:84px;z-index:10}.topicTitle{font-weight:950;font-size:16px}.sub{font-size:12px;color:var(--muted);margin-top:5px}.actions{display:flex;gap:9px}.btn{border:0;border-radius:13px;padding:11px 16px;font-size:13px;font-weight:900}.stop{color:#a42636;background:#fff1f2;border:1px solid #f1c3ca}.hidden{display:none!important}.list{margin-top:18px;display:grid;gap:16px}.card{background:#fff;border:1px solid var(--line);border-radius:22px;padding:22px;transition:.3s}.card.active{border-color:#8f7af0;background:#faf8ff;box-shadow:0 0 0 4px #6745e412}.cardHead{display:flex;justify-content:space-between}.number{font-size:11px;font-weight:950;color:#6d5aca}.wordRow{display:flex;align-items:center;gap:12px;margin-top:6px}.word{font-size:28px;font-weight:950}.pos,.badge{font-size:12px;padding:7px 10px;background:#eef1f6;border-radius:20px;color:#536174;font-weight:800}.iconBtn,.listenSmall{border:1px solid #ddd8f4;background:#fff;color:#5637d8;border-radius:11px;padding:9px 11px}.grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:18px}.block{border-radius:17px;padding:16px;background:#f8fafc;border:1px solid #e9edf3}.label{font-size:11px;font-weight:950;letter-spacing:.08em;color:#738096;margin-bottom:8px}.sentence{font-size:17px;line-height:1.6}.telugu{font-family:"Noto Sans Telugu","Nirmala UI","Gautami",sans-serif;font-size:18px;line-height:1.7}.blockTop{display:flex;justify-content:space-between;gap:10px}.footer{display:flex;justify-content:space-between;margin-top:16px}.resource{display:inline-flex;text-decoration:none;border:1px solid #ddd8f4;color:#4c32b0;background:#fff;border-radius:11px;padding:9px 12px;font-size:12px;font-weight:850}
+.word-jump{display:flex;align-items:center;gap:8px;padding:6px 9px;border:1px solid rgba(148,163,184,.28);border-radius:14px;background:rgba(255,255,255,.58);backdrop-filter:blur(14px);box-shadow:0 10px 24px rgba(15,23,42,.05)}
+.word-jump label{font-size:11px;font-weight:900;color:#64748b}
+.word-jump input{width:78px;border:1px solid rgba(148,163,184,.32);border-radius:10px;padding:9px 10px;background:rgba(255,255,255,.82);font-weight:900;color:#334155;outline:none}
+.word-jump input:focus{border-color:#7354df;box-shadow:0 0 0 3px rgba(115,84,223,.12)}
+.goWord{min-width:auto!important;padding:9px 14px!important}
+.pagination{display:flex;justify-content:center;align-items:center;gap:12px;margin:24px 0}.empty,.error{padding:35px;text-align:center;background:#fff;border:1px solid var(--line);border-radius:20px}.error{background:#fff1f2;color:#a42636}.status{font-size:12px;font-weight:900;padding:8px 11px;border-radius:20px;background:#f0f2f6}
+.secondary{border:1px solid #d8d3ec;background:#fff;color:#4b3a9a}
+.ttsPanel{margin-top:14px;background:#fff;border:1px solid #ded8f3;border-radius:20px;padding:18px;box-shadow:0 8px 28px #5d43a10c}
+.ttsPanelHead{display:flex;justify-content:space-between;gap:16px;align-items:flex-start}
+.ttsTitle{font-size:16px;font-weight:950}
+.ttsHint{margin-top:6px;font-size:12px;line-height:1.55;color:var(--muted);max-width:900px}
+.closeTts{border:0;background:#f1effa;color:#5637d8;width:34px;height:34px;border-radius:10px;font-size:22px;line-height:1}
+.ttsGrid{display:grid;grid-template-columns:2fr 1fr 1fr;gap:12px;margin-top:16px}
+.ttsField{display:flex;flex-direction:column;gap:7px;font-size:11px;font-weight:900;letter-spacing:.04em;color:#64748b}
+.ttsField input{width:100%;border:1px solid var(--line);border-radius:12px;padding:12px 13px;font:inherit;color:var(--ink);outline:none}
+.ttsField input:focus{border-color:#8f7af0;box-shadow:0 0 0 3px #6745e412}
+.ttsActions{display:flex;align-items:center;gap:10px;margin-top:14px;flex-wrap:wrap}
+.ttsState{font-size:12px;font-weight:850;color:#536174}
+.ttsNote{margin-top:12px;padding:10px 12px;border-radius:12px;background:#f8fafc;border:1px solid #e9edf3;font-size:11px;line-height:1.5;color:#66758b}
+@media(max-width:800px){.ttsGrid{grid-template-columns:1fr}.ttsActions{align-items:stretch}.ttsActions .btn{width:100%}.grid{grid-template-columns:1fr}.control{position:static;flex-direction:column;align-items:flex-start}.top{padding:0 15px}.page{padding:16px}}
+
+/* ===== Premium glass TTS settings ===== */
+.ttsPanel{
+  position:relative;
+  overflow:hidden;
+  border:1px solid rgba(255,255,255,.58) !important;
+  background:linear-gradient(135deg,rgba(255,255,255,.76),rgba(244,241,255,.58)) !important;
+  box-shadow:0 18px 45px rgba(55,39,105,.14), inset 0 1px 0 rgba(255,255,255,.82);
+  backdrop-filter:blur(22px) saturate(145%);
+  -webkit-backdrop-filter:blur(22px) saturate(145%);
+  border-radius:24px !important;
+}
+.ttsPanel:before{
+  content:"";
+  position:absolute;
+  width:360px;height:360px;
+  right:-130px;top:-230px;
+  border-radius:50%;
+  background:radial-gradient(circle,rgba(112,73,225,.18),rgba(112,73,225,0) 68%);
+  pointer-events:none;
+}
+.ttsPanel>*{position:relative;z-index:1}
+.ttsPanelHead{
+  padding:4px 2px 16px;
+  border-bottom:1px solid rgba(92,73,164,.12);
+}
+.ttsTitle{
+  font-size:1.12rem !important;
+  letter-spacing:.01em;
+}
+.ttsHint{
+  margin-top:6px;
+  color:#667085;
+  line-height:1.5;
+}
+.ttsGrid{
+  gap:16px !important;
+  padding-top:18px;
+}
+.ttsField{
+  padding:13px 14px;
+  border:1px solid rgba(91,72,160,.14);
+  border-radius:16px;
+  background:rgba(255,255,255,.42);
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.7);
+}
+.ttsField span{
+  font-weight:700;
+  color:#4b5563;
+  letter-spacing:.02em;
+}
+.ttsField input,.ttsField select{
+  margin-top:8px;
+  min-height:44px;
+  border-radius:12px !important;
+  border:1px solid rgba(91,72,160,.18) !important;
+  background:rgba(255,255,255,.76) !important;
+  box-shadow:0 4px 14px rgba(50,40,95,.05);
+  transition:border-color .2s ease,box-shadow .2s ease,transform .2s ease;
+}
+.ttsField input:focus,.ttsField select:focus{
+  outline:none;
+  border-color:rgba(103,72,220,.58) !important;
+  box-shadow:0 0 0 4px rgba(104,74,220,.10),0 8px 20px rgba(68,50,140,.08);
+}
+.ttsActions{
+  margin-top:18px !important;
+  padding-top:18px;
+  border-top:1px solid rgba(91,72,160,.10);
+}
+.ttsActions .btn{
+  border-radius:14px !important;
+  box-shadow:0 8px 20px rgba(69,49,142,.10);
+}
+.ttsState{
+  padding:10px 14px;
+  border-radius:999px;
+  background:rgba(255,255,255,.56);
+  border:1px solid rgba(91,72,160,.12);
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.8);
+}
+.closeTts{
+  width:42px;height:42px;
+  border-radius:14px !important;
+  background:rgba(255,255,255,.55) !important;
+  border:1px solid rgba(91,72,160,.12) !important;
+  box-shadow:0 8px 18px rgba(50,40,95,.08);
+}
+@media(max-width:700px){
+  .ttsPanel{border-radius:18px !important}
+  .ttsField{padding:11px}
+}
+
+
+/* ===== Premium vocabulary word cards ===== */
+.list{gap:20px}
+.card{
+  position:relative;
+  overflow:hidden;
+  padding:26px !important;
+  border:1px solid rgba(115,89,220,.20) !important;
+  background:
+    radial-gradient(circle at 100% 0%,rgba(122,74,237,.10),transparent 30%),
+    linear-gradient(135deg,rgba(255,255,255,.92),rgba(248,247,255,.86)) !important;
+  box-shadow:0 14px 34px rgba(55,39,105,.08),inset 0 1px 0 rgba(255,255,255,.85);
+  border-radius:26px !important;
+}
+.card:before{
+  content:"";
+  position:absolute;
+  inset:0;
+  pointer-events:none;
+  background:linear-gradient(115deg,rgba(255,255,255,.40),transparent 34%);
+}
+.card>*{position:relative;z-index:1}
+.card:hover{
+  transform:translateY(-2px);
+  box-shadow:0 20px 42px rgba(55,39,105,.12),inset 0 1px 0 rgba(255,255,255,.9);
+}
+.card.active{
+  border-color:rgba(101,72,220,.72) !important;
+  background:
+    radial-gradient(circle at 100% 0%,rgba(122,74,237,.16),transparent 34%),
+    linear-gradient(135deg,rgba(255,255,255,.96),rgba(246,243,255,.92)) !important;
+  box-shadow:0 0 0 4px rgba(103,69,216,.08),0 22px 48px rgba(55,39,105,.13) !important;
+}
+.word{
+  font-size:32px !important;
+  letter-spacing:-.02em;
+}
+.wordRow{gap:14px !important}
+.number{
+  letter-spacing:.12em;
+  color:#6653b7 !important;
+}
+.pos,.badge{
+  border:1px solid rgba(103,79,176,.10);
+  background:rgba(238,239,247,.72) !important;
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.8);
+}
+.block{
+  background:rgba(255,255,255,.54) !important;
+  border:1px solid rgba(105,90,160,.12) !important;
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.72);
+  border-radius:19px !important;
+}
+.iconBtn,.listenSmall{
+  background:rgba(255,255,255,.74) !important;
+  box-shadow:0 8px 18px rgba(62,47,123,.08);
+}
+.footer{margin-top:18px !important}
+
+</style></head><body>
+<header class="top"><div class="brand"><div class="logo">V</div><span>Vocabulary Learning</span></div><button class="dashboard" onclick="location.href='index.html'">← Dashboard</button></header>
+<main class="page"><section class="hero"><h1>Build Vocabulary. Hear It. Understand It. Remember It.</h1><p>10 words per page • Indian English + Telugu voice preference • automatic guided learning</p></section><div id="tabs" class="tabs"></div>
+<section class="control"><div><div id="topicTitle" class="topicTitle">Vocabulary</div><div id="topicSub" class="sub">Loading words...</div></div><div class="actions">
+  <span id="status" class="status">Ready</span>
+  <button id="ttsSettingsBtn" class="btn secondary" type="button">⚙ TTS Settings</button>
+  <button id="startBtn" class="btn primary">▶ Start Auto Learning</button>
+  <button id="stopBtn" class="btn stop hidden">■ Stop</button>
+</div></section>
+
+<section id="ttsPanel" class="ttsPanel hidden" aria-label="Google Cloud TTS settings">
+  <div class="ttsPanelHead">
+    <div>
+      <div class="ttsTitle">🔊 Google Cloud Text-to-Speech</div>
+      <div class="ttsHint">
+        Use Google Cloud Chirp 3 HD voices for natural Indian English and Telugu.
+        If Cloud quota is exhausted, Browser TTS continues where a matching local voice is installed.
+      </div>
+    </div>
+    <button id="closeTtsPanel" class="closeTts" type="button">×</button>
+  </div>
+
+  <div class="ttsGrid">
+    <label class="ttsField">
+      <span>Google Cloud API Key</span>
+      <input id="ttsApiKey" type="password" autocomplete="off" placeholder="Paste your Google Cloud Text-to-Speech API key">
+    </label>
+
+    <label class="ttsField">
+      <span>TTS Mode</span>
+      <select id="ttsMode">
+        <option value="auto">Auto: Cloud → Browser fallback</option>
+        <option value="cloud">Google Cloud only</option>
+        <option value="browser">Browser voice only</option>
+      </select>
+    </label>
+
+    <label class="ttsField">
+      <span>English Voice</span>
+      <select id="englishVoice"></select>
+    </label>
+
+    <label class="ttsField">
+      <span>Telugu Voice</span>
+      <select id="teluguVoice"></select>
+    </label>
+
+    <label class="ttsField">
+      <span>Speech Speed</span>
+      <select id="speechRate">
+        <option value="0.8">0.8× Slow</option>
+        <option value="0.9">0.9×</option>
+        <option value="1" selected>1.0× Normal</option>
+        <option value="1.1">1.1×</option>
+        <option value="1.2">1.2× Fast</option>
+      </select>
+    </label>
+  </div>
+
+  <div class="ttsActions">
+    <button id="saveTtsKey" class="btn primary" type="button">Save for This Session</button>
+    <button id="testEnglishTts" class="btn secondary" type="button">▶ Test English</button>
+    <button id="testTeluguTts" class="btn secondary" type="button">▶ తెలుగు పరీక్ష</button>
+    <button id="clearTtsKey" class="btn stop" type="button">Clear Key</button>
+    <span id="ttsState" class="ttsState">Browser TTS active</span>
+  </div>
+</section>
+
+<section id="list" class="list"></section><div class="pagination"><button id="prevPage" class="pageBtn">← Previous 10</button><div class="word-jump"><label for="wordJump">Word</label><input id="wordJump" type="number" min="1" value="1" inputmode="numeric" aria-label="Enter word number"><button id="goWord" class="pageBtn goWord">Go</button></div><strong id="pageInfo">Page 1</strong><button id="nextPage" class="pageBtn">Next 10 →</button></div></main>
+
+<script>
+const API_URL='https://script.google.com/macros/s/AKfycbytEPdMZdkgsnQVfKcb5HUoDWKnTGPNQb5LA-osdkAGF2ygPGZiYPxpzrdzEmPvb-9Bkw/exec';
+const PAGE_SIZE=10;
+
+const TOPICS=[
+  ['vocabularyDailyUse','Daily Use'],
+  ['vocabularyAcademic','Academic'],
+  ['vocabularyPteHighFrequency','PTE High-Frequency'],
+  ['vocabularySynonymsAntonyms','Synonyms & Antonyms'],
+  ['vocabularyBusinessWork','Business & Work'],
+  ['vocabularyEducation','Education'],
+  ['vocabularyScienceTechnology','Science & Technology'],
+  ['vocabularyEnvironment','Environment'],
+  ['vocabularyHealthLifestyle','Health & Lifestyle'],
+  ['vocabularyTravelSociety','Travel & Society'],
+  ['vocabularyAdvanced','Advanced'],
+  ['vocabularyConfusingWords','Confusing Words']
+];
+
+let currentTopic=TOPICS[0][0];
+let words=[];
+let page=0;
+let stopRequested=false;
+let voices=[];
+let cloudTtsEnabled=false;
+let cloudTtsLoading=false;
+let cloudFallbackForCycle=false;
+
+const TTS_SESSION_KEY='pteVocabularyGoogleCloudTtsKey';
+const TTS_ENGLISH_VOICE_KEY='pteVocabularyEnglishVoice';
+const TTS_TELUGU_VOICE_KEY='pteVocabularyTeluguVoice';
+
+const $=id=>document.getElementById(id);
+const sleep=ms=>new Promise(resolve=>setTimeout(resolve,ms));
+
+function loadVoices(){
+  if('speechSynthesis' in window){
+    voices=window.speechSynthesis.getVoices()||[];
+  }
+}
+if('speechSynthesis' in window){
+  loadVoices();
+  window.speechSynthesis.onvoiceschanged=loadVoices;
+}
+
+function jsonp(action,params={}){
+  return new Promise((resolve,reject)=>{
+    const cb='pteVocab_'+Date.now()+'_'+Math.floor(Math.random()*99999);
+    const s=document.createElement('script');
+    const timer=setTimeout(()=>{
+      cleanup();
+      reject(new Error('Backend timeout'));
+    },20000);
+
+    function cleanup(){
+      clearTimeout(timer);
+      try{s.remove()}catch(e){}
+      try{delete window[cb]}catch(e){window[cb]=undefined}
+    }
+
+    window[cb]=data=>{
+      cleanup();
+      resolve(data);
+    };
+
+    s.onerror=()=>{
+      cleanup();
+      reject(new Error('Backend connection failed'));
+    };
+
+    const q=new URLSearchParams({
+      action:String(action),
+      callback:cb,
+      t:String(Date.now()),
+      ...params
+    });
+
+    s.src=API_URL+'?'+q.toString();
+    document.body.appendChild(s);
+  });
+}
+
+function updateTtsUi(){
+  const hasKey=!!getCloudApiKey();
+  cloudTtsEnabled=hasKey;
+
+  const state=$('ttsState');
+  if(state){
+    if(hasKey && !cloudFallbackForCycle){
+      state.textContent='Google Cloud TTS ready • Browser fallback enabled';
+    }else if(hasKey && cloudFallbackForCycle){
+      state.textContent='Browser fallback for current cycle (Cloud quota/error)';
+    }else{
+      state.textContent='Browser TTS active';
+    }
+  }
+}
+
+function getCloudApiKey(){
+  return String(sessionStorage.getItem(TTS_SESSION_KEY)||'').trim();
+}
+
+function getEnglishVoice(){
+  return String($('englishVoice').value||'en-IN-Chirp3-HD-Achernar').trim();
+}
+
+function getTeluguVoice(){
+  return String($('teluguVoice').value||'te-IN-Standard-A').trim();
+}
+
+function getTtsMode(){
+  return String($('ttsMode')?.value||'auto').trim().toLowerCase();
+}
+
+function getSpeechRate(){
+  const value=Number($('speechRate')?.value||1);
+  return isFinite(value)?Math.max(0.5,Math.min(2,value)):1;
+}
+
+function selectedVoiceFor(language){
+  return language==='te'?getTeluguVoice():getEnglishVoice();
+}
+
+function isBrowserVoiceChoice(value){
+  return value==='__browser_default__' || String(value||'').startsWith('browser::');
+}
+
+function loadTtsConfig(){
+  const savedKey=getCloudApiKey();
+  $('ttsApiKey').value=savedKey;
+  $('englishVoice').value=String(sessionStorage.getItem(TTS_ENGLISH_VOICE_KEY)||'en-IN-Chirp3-HD-Achernar');
+  $('teluguVoice').value=String(sessionStorage.getItem(TTS_TELUGU_VOICE_KEY)||'te-IN-Standard-A');
+  updateTtsUi();
+}
+
+function saveTtsSettings(){
+  const key=String($('ttsApiKey').value||'').trim();
+  const englishVoice=getEnglishVoice();
+  const teluguVoice=getTeluguVoice();
+
+  if(key){
+    sessionStorage.setItem(TTS_SESSION_KEY,key);
+  }else{
+    sessionStorage.removeItem(TTS_SESSION_KEY);
+  }
+
+  sessionStorage.setItem(TTS_ENGLISH_VOICE_KEY,englishVoice);
+  sessionStorage.setItem(TTS_TELUGU_VOICE_KEY,teluguVoice);
+
+  cloudFallbackForCycle=false;
+  updateTtsUi();
+  $('status').textContent=key?'Cloud TTS ready':'Browser TTS ready';
+}
+
+function clearTtsSettings(){
+  sessionStorage.removeItem(TTS_SESSION_KEY);
+  $('ttsApiKey').value='';
+  cloudFallbackForCycle=false;
+  updateTtsUi();
+  $('status').textContent='Browser TTS ready';
+}
+
+function renderTabs(){
+  const el=$('tabs');
+  el.innerHTML='';
+  TOPICS.forEach(([key,label])=>{
+    const btn=document.createElement('button');
+    btn.className='tab'+(key===currentTopic?' active':'');
+    btn.textContent=label;
+    btn.onclick=()=>loadTopic(key);
+    el.appendChild(btn);
+  });
+}
+
+async function loadTopic(key){
+  stopAuto();
+  currentTopic=key;
+  page=0;
+  renderTabs();
+  $('list').innerHTML='<div class="empty">Loading vocabulary...</div>';
+
+  try{
+    const data=await jsonp(key);
+    if(data && data.ok===false) throw new Error(data.error||'Unable to load vocabulary');
+
+    words=(data && data.questions ? data.questions : [])
+      .filter(item=>String(item.word||item.question||'').trim());
+
+    render();
+  }catch(err){
+    $('list').innerHTML=
+      '<div class="error"><b>Unable to load Vocabulary.</b><br>'+
+      esc(err.message||String(err))+
+      '<br><br>Check Code.gs, the Vocabulary sheet names, and redeploy the web app.</div>';
+  }
+}
+
+function currentItems(){
+  return words.slice(page*PAGE_SIZE,page*PAGE_SIZE+PAGE_SIZE);
+}
+
+function field(item,name){
+  const map={
+    word:item.word||item.question||'',
+    sentence:item.exampleSentence||item.sentence||item.text||'',
+    teluguWord:item.teluguWordMeaning||item.teluguMeaning||'',
+    teluguSentence:item.teluguSentenceMeaning||item.teluguSentence||''
+  };
+  return String(map[name]||'').trim();
+}
+
+function render(){
+  window.PTEProgress?.setContext('Vocabulary',currentTopic,page,words[page*PAGE_SIZE]);
+  const topic=TOPICS.find(item=>item[0]===currentTopic);
+  const label=topic?topic[1]:'Vocabulary';
+
+  $('topicTitle').textContent=label+' Vocabulary';
+  $('topicSub').textContent=words.length
+    ? words.length+' words available • 10 words per page'
+    : 'No words found';
+
+  const items=currentItems();
+
+  if(!items.length){
+    $('list').innerHTML=
+      '<div class="empty">No vocabulary found. Required columns: Word, Example Sentence, Telugu Word Meaning, Telugu Sentence Meaning.</div>';
+    updatePage();
+    return;
+  }
+
+  $('list').innerHTML=items.map((item,index)=>{
+    const number=page*PAGE_SIZE+index+1;
+    const word=field(item,'word');
+    const sentence=field(item,'sentence');
+    const teluguWord=field(item,'teluguWord');
+    const teluguSentence=field(item,'teluguSentence');
+    const pos=item.partOfSpeech||'Vocabulary';
+    const resource=String(item.resourceUrl||item.resource||'').trim();
+
+    return `
+      <article id="card-${index}" class="card">
+        <div class="cardHead">
+          <div>
+            <div class="number">WORD ${String(number).padStart(2,'0')}</div>
+            <div class="wordRow">
+              <div class="word">${esc(word)}</div>
+              <span class="pos">${esc(pos)}</span>
+              <button class="iconBtn" title="Listen to word" onclick="speakNow(${index},'word')">🔊</button>
+            </div>
+          </div>
+          <span id="badge-${index}" class="badge">Ready</span>
+        </div>
+
+        <div class="grid">
+          <div class="block">
+            <div class="blockTop">
+              <div class="label">TELUGU WORD MEANING</div>
+              <button class="listenSmall" onclick="speakNow(${index},'teluguWord')">🔊 వినండి</button>
+            </div>
+            <div class="telugu">${esc(teluguWord)}</div>
+          </div>
+
+          <div class="block">
+            <div class="blockTop">
+              <div class="label">EXAMPLE SENTENCE</div>
+              <button class="listenSmall" onclick="speakNow(${index},'sentence')">🔊 Listen</button>
+            </div>
+            <div class="sentence">${esc(sentence)}</div>
+          </div>
+
+          <div class="block">
+            <div class="blockTop">
+              <div class="label">TELUGU SENTENCE MEANING</div>
+              <button class="listenSmall" onclick="speakNow(${index},'teluguSentence')">🔊 వినండి</button>
+            </div>
+            <div class="telugu">${esc(teluguSentence)}</div>
+          </div>
+
+        </div>
+
+        <div class="footer">
+          <button class="btn primary" onclick="startFrom(${index})">▶ Start From This Card</button>
+          ${resource?`<a class="resource" href="${attr(resource)}" target="_blank" rel="noopener">🔗 Open Resource ↗</a>`:''}
+        </div>
+      </article>
+    `;
+  }).join('');
+
+  updatePage();
+}
+
+function updatePage(){
+  const totalPages=Math.max(1,Math.ceil(words.length/PAGE_SIZE));
+  $('pageInfo').textContent='Page '+(page+1)+' of '+totalPages;
+  $('prevPage').disabled=page===0;
+  $('nextPage').disabled=page>=totalPages-1;
+  if($('wordJump')){ $('wordJump').min=1; $('wordJump').max=Math.max(1,words.length); if(!document.activeElement || document.activeElement.id!=='wordJump') $('wordJump').value=Math.min(words.length||1,page*PAGE_SIZE+1); }
+}
+
+function pickVoice(language){
+  const exact=language==='te'?'te-in':'en-in';
+  const prefix=language==='te'?'te':'en';
+
+  return (
+    voices.find(v=>String(v.lang||'').toLowerCase()===exact) ||
+    voices.find(v=>String(v.lang||'').toLowerCase().startsWith(prefix+'-in')) ||
+    voices.find(v=>String(v.lang||'').toLowerCase().startsWith(prefix)) ||
+    null
+  );
+}
+
+function waitForVoices(timeout=1800){
+  return new Promise(resolve=>{
+    loadVoices();
+    if((voices||[]).length) return resolve(voices);
+    if(!('speechSynthesis' in window)) return resolve([]);
+    const started=Date.now();
+    const timer=setInterval(()=>{
+      loadVoices();
+      if((voices||[]).length || Date.now()-started>=timeout){
+        clearInterval(timer);
+        resolve(voices||[]);
+      }
+    },120);
+  });
+}
+
+async function browserSpeak(text,language){
+  const value=String(text||'').trim();
+  if(!value || !('speechSynthesis' in window)) return false;
+
+  await waitForVoices();
+  const utterance=new SpeechSynthesisUtterance(value);
+  const chosen=selectedVoiceFor(language);
+  let voice=null;
+
+  if(String(chosen).startsWith('browser::')){
+    const name=String(chosen).slice('browser::'.length);
+    voice=(voices||[]).find(v=>v.name===name)||null;
+  }else if(chosen==='__browser_default__'){
+    voice=pickVoice(language);
+  }else{
+    voice=pickVoice(language);
+  }
+
+  if(language==='te' && !voice){
+    $('status').textContent='No Telugu browser voice installed • using Google Cloud Telugu when available';
+    return false;
+  }
+
+  return new Promise(resolve=>{
+    window.speechSynthesis.cancel();
+    if(voice) utterance.voice=voice;
+    utterance.lang=language==='te'?'te-IN':'en-IN';
+    utterance.rate=getSpeechRate();
+    utterance.pitch=1;
+
+    $('status').textContent=voice
+      ? 'Playing browser voice • '+voice.name
+      : 'Playing browser default voice';
+
+    utterance.onend=()=>resolve(true);
+    utterance.onerror=()=>resolve(false);
+    window.speechSynthesis.speak(utterance);
+  });
+}
+async function playCloudAudio(base64){
+  return new Promise((resolve,reject)=>{
+    if(!base64) return reject(new Error('Cloud TTS returned empty audio.'));
+    const audio=new Audio('data:audio/mpeg;base64,'+base64);
+    audio.preload='auto';
+    audio.onended=()=>resolve(true);
+    audio.onerror=()=>reject(new Error('Cloud audio could not be played.'));
+    const p=audio.play();
+    if(p && typeof p.catch==='function') p.catch(reject);
+  });
+}
+
+function cloudErrorMessage(data, fallback){
+  if(data && data.error){
+    if(typeof data.error==='string') return data.error;
+    if(data.error.message) return String(data.error.message);
+  }
+  return String(fallback||'Google Cloud TTS request failed.');
+}
+
+function markCloudFailure(message, status){
+  const text=String(message||'').trim();
+  if(status===429 || /quota|resource[_\s-]*exhausted|rate limit|daily limit|billing|api has not been used|permission denied/i.test(text)){
+    cloudFallbackForCycle=true;
+  }
+  updateTtsUi();
+  $('status').textContent='Cloud TTS unavailable → Browser fallback';
+}
+
+async function cloudSpeakDirect(text, language, apiKey, voiceName){
+  const languageCode=language==='te'?'te-IN':'en-IN';
+  const payload={
+    input:{text:String(text)},
+    voice:{languageCode:languageCode, ...(voiceName?{name:voiceName}:{})},
+    audioConfig:{audioEncoding:'MP3', speakingRate:getSpeechRate()}
+  };
+
+  const controller=('AbortController' in window)?new AbortController():null;
+  const timer=controller?setTimeout(()=>controller.abort(),20000):null;
+  try{
+    const response=await fetch(
+      'https://texttospeech.googleapis.com/v1/text:synthesize',
+      {
+        method:'POST',
+        headers:{'Content-Type':'application/json','X-Goog-Api-Key':apiKey},
+        body:JSON.stringify(payload),
+        signal:controller?controller.signal:undefined
+      }
+    );
+    const raw=await response.text();
+    let data={};
+    try{data=raw?JSON.parse(raw):{}}catch(e){data={error:{message:raw}}}
+    if(!response.ok || !data.audioContent){
+      const err=new Error(cloudErrorMessage(data,raw));
+      err.status=response.status;
+      err.isCloudResponse=true;
+      throw err;
+    }
+    await playCloudAudio(data.audioContent);
+    return true;
+  } finally {
+    if(timer) clearTimeout(timer);
+  }
+}
+
+async function cloudSpeakProxy(text, language, apiKey, voiceName){
+  const data=await jsonp('vocabularytts',{
+    apiKey:apiKey,
+    text:String(text),
+    lang:language==='te'?'te-IN':'en-IN',
+    voiceName:voiceName||'',
+    speakingRate:getSpeechRate()
+  });
+  if(!data || data.ok===false || !data.audioContent){
+    const err=new Error(cloudErrorMessage(data, data&&data.error));
+    err.status=data && data.status ? Number(data.status) : 0;
+    err.isCloudResponse=true;
+    throw err;
+  }
+  await playCloudAudio(data.audioContent);
+  return true;
+}
+
+function naturalVoiceCandidates(language, preferred){
+  const selected=String(preferred||'').trim();
+  const list=language==='te'
+    ? [
+        selected,
+        'te-IN-Standard-A',
+        'te-IN-Standard-B'
+      ]
+    : [
+        selected,
+        'en-IN-Neural2-A',
+        'en-IN-Wavenet-A',
+        'en-IN-Standard-A'
+      ];
+  return [...new Set(list.filter(Boolean))];
+}
+
+function isVoiceOrRequestError(err){
+  const status=Number(err&&err.status||0);
+  const msg=String(err&&err.message||'');
+  return status===400 || status===404 || /voice|invalid argument|not found|unsupported/i.test(msg);
+}
+
+async function cloudSpeak(text,language){
+  const value=String(text||'').trim();
+  const apiKey=getCloudApiKey();
+  const mode=getTtsMode();
+  const preferred=selectedVoiceFor(language);
+
+  if(mode==='browser' || isBrowserVoiceChoice(preferred)) return false;
+  if(!cloudTtsEnabled || cloudFallbackForCycle || !apiKey || !value) return false;
+
+  const candidates=naturalVoiceCandidates(language,preferred);
+  let lastErr=null;
+
+  for(const voiceName of candidates){
+    try{
+      await cloudSpeakDirect(value,language,apiKey,voiceName);
+      $('status').textContent='Playing Google Cloud voice • '+voiceName;
+      return true;
+    }catch(directErr){
+      lastErr=directErr;
+      try{
+        await cloudSpeakProxy(value,language,apiKey,voiceName);
+        $('status').textContent='Playing Google Cloud voice • '+voiceName;
+        return true;
+      }catch(proxyErr){
+        lastErr=proxyErr || directErr;
+        // Try the next valid voice when this voice is unavailable.
+        if(isVoiceOrRequestError(lastErr)) continue;
+      }
+    }
+  }
+
+  const message=String(lastErr&&lastErr.message || 'Google Cloud TTS failed');
+  const status=Number(lastErr&&lastErr.status || 0);
+  markCloudFailure(message,status);
+  return false;
+}
+async function speak(text,language){
+  const value=String(text||'').trim();
+  if(!value) return false;
+
+  const mode=getTtsMode();
+
+  if(mode!=='browser'){
+    const cloudWorked=await cloudSpeak(value,language);
+    if(cloudWorked) return true;
+    if(mode==='cloud'){
+      $('status').textContent='Selected Google Cloud voice could not be played';
+      return false;
+    }
+  }
+
+  const browserWorked=await browserSpeak(value,language);
+  if(!browserWorked && language==='te'){
+    $('status').textContent='Telugu could not be spoken with the selected voice';
+  }
+  return browserWorked;
+}
+
+function speakNow(index,type){
+  const item=currentItems()[index];
+  if(!item) return;
+
+  const language=(type==='teluguWord'||type==='teluguSentence')?'te':'en';
+  const name=type==='teluguWord'?'teluguWord':
+             type==='teluguSentence'?'teluguSentence':
+             type==='sentence'?'sentence':'word';
+
+  speak(field(item,name),language);
+}
+
+function setActive(index){
+  document.querySelectorAll('.card').forEach(card=>card.classList.remove('active'));
+  document.querySelectorAll('.badge').forEach(badge=>badge.textContent='Ready');
+
+  const card=$('card-'+index);
+  const badge=$('badge-'+index);
+
+  if(card){
+    card.classList.add('active');
+    card.scrollIntoView({behavior:'smooth',block:'center'});
+  }
+  if(badge) badge.textContent='▶ Learning';
+}
+
+function setControls(running){
+  $('startBtn').classList.toggle('hidden',running);
+  $('stopBtn').classList.toggle('hidden',!running);
+}
+
+async function run(startIndex=0){
+  stopRequested=false;
+
+  // Reset quota/error fallback only when a new learning cycle begins.
+  if(startIndex===0){
+    cloudFallbackForCycle=false;
+    updateTtsUi();
+  }
+
+  setControls(true);
+  $('status').textContent=cloudTtsEnabled && !cloudFallbackForCycle
+    ? 'Auto learning • Cloud TTS + Browser fallback'
+    : 'Auto learning • Browser TTS';
+
+  const items=currentItems();
+
+  for(let i=startIndex;i<items.length;i++){
+    if(stopRequested) break;
+
+    setActive(i);
+    const item=items[i];
+
+    // Exact requested order:
+    // 1. English word
+    // 2. 1.5 sec delay
+    // 3. Telugu word meaning
+    // 4. 1.5 sec delay
+    // 5. English example sentence
+    // 6. Telugu sentence meaning
+    // 7. 3 sec delay
+    // 8. Next card
+    await speak(field(item,'word'),'en');
+    if(stopRequested) break;
+
+    await sleep(1500);
+    if(stopRequested) break;
+
+    await speak(field(item,'teluguWord'),'te');
+    if(stopRequested) break;
+
+    await sleep(1500);
+    if(stopRequested) break;
+
+    await speak(field(item,'sentence'),'en');
+    if(stopRequested) break;
+
+    await speak(field(item,'teluguSentence'),'te');
+    if(stopRequested) break;
+
+    await sleep(3000);
+  }
+
+  if(stopRequested){
+    setControls(false);
+    $('status').textContent='Stopped';
+    return;
+  }
+
+  const totalPages=Math.max(1,Math.ceil(words.length/PAGE_SIZE));
+
+  // Automatically continue to the next page after all 10 cards.
+  if(page<totalPages-1){
+    page++;
+    render();
+    $('status').textContent='Next 10 words...';
+    await sleep(600);
+
+    if(!stopRequested){
+      return run(0);
+    }
+  }
+
+  setControls(false);
+  $('status').textContent='Completed ✓';
+}
+
+function stopAuto(){
+  stopRequested=true;
+
+  if('speechSynthesis' in window){
+    window.speechSynthesis.cancel();
+  }
+
+  setControls(false);
+  $('status').textContent='Ready';
+}
+
+function startFrom(index){
+  stopAuto();
+  setTimeout(()=>run(index),50);
+}
+
+$('startBtn').onclick=()=>run(0);
+$('stopBtn').onclick=stopAuto;
+
+$('goWord').onclick=()=>{
+  const entered=Math.trunc(Number($('wordJump').value));
+  if(!Number.isFinite(entered)||entered<1||entered>words.length){
+    alert('Enter a word number from 1 to '+words.length);
+    $('wordJump').focus();
+    return;
+  }
+  stopAuto();
+  page=Math.floor((entered-1)/PAGE_SIZE);
+  render();
+  setTimeout(()=>{
+    const localIndex=(entered-1)%PAGE_SIZE;
+    const card=$('card-'+localIndex);
+    if(card){
+      document.querySelectorAll('.card').forEach(x=>x.classList.remove('active','learning'));
+      card.classList.add('active');
+      card.scrollIntoView({behavior:'smooth',block:'center'});
+    }
+  },0);
+};
+$('wordJump').onkeydown=(e)=>{if(e.key==='Enter')$('goWord').click();};
+
+$('prevPage').onclick=()=>{
+  if(page>0){
+    stopAuto();
+    page--;
+    render();
+  }
+};
+
+$('nextPage').onclick=()=>{
+  const totalPages=Math.max(1,Math.ceil(words.length/PAGE_SIZE));
+  if(page<totalPages-1){
+    stopAuto();
+    page++;
+    render();
+  }
+};
+
+function esc(value){
+  return String(value??'').replace(/[&<>"']/g,char=>({
+    '&':'&amp;',
+    '<':'&lt;',
+    '>':'&gt;',
+    '"':'&quot;',
+    "'":'&#39;'
+  }[char]));
+}
+
+function attr(value){
+  return esc(value);
+}
+
+async function testCloudTts(language){
+  const sample=language==='te'
+    ? 'నమస్తే. ఇది తెలుగు వాయిస్ పరీక్ష.'
+    : 'Hello. This is your selected Indian English voice.';
+  $('status').textContent='Testing selected '+(language==='te'?'Telugu':'English')+' voice...';
+  await speak(sample,language);
+}
+
+$('ttsSettingsBtn').onclick=()=>$('ttsPanel').classList.toggle('hidden');
+$('closeTtsPanel').onclick=()=>$('ttsPanel').classList.add('hidden');
+$('saveTtsKey').onclick=saveTtsSettings;
+$('clearTtsKey').onclick=clearTtsSettings;
+
+renderTabs();
+$('testEnglishTts').onclick=()=>testCloudTts('en');
+$('testTeluguTts').onclick=()=>testCloudTts('te');
+
+loadTtsConfig();
+loadTopic(currentTopic);
+</script>
+
+<script>
+/* ===== Voice selector upgrade ===== */
+(function(){
+  const CLOUD_EN=[
+    ['en-IN-Chirp3-HD-Achernar','Cloud: Indian English – Achernar'],
+    ['en-IN-Chirp3-HD-Achird','Cloud: Indian English – Achird'],
+    ['en-IN-Standard-A','Cloud: Indian English – Standard A'],
+    ['en-IN-Standard-B','Cloud: Indian English – Standard B'],
+    ['en-IN-Standard-C','Cloud: Indian English – Standard C'],
+    ['en-IN-Standard-D','Cloud: Indian English – Standard D']
+  ];
+  const CLOUD_TE=[
+    ['te-IN-Standard-A','Cloud: Telugu – Standard A'],
+    ['te-IN-Standard-B','Cloud: Telugu – Standard B']
+  ];
+
+  const KEY='pteVocabularyVoiceSettingsV2';
+  function get(id){return document.getElementById(id)}
+  function load(){try{return JSON.parse(localStorage.getItem(KEY)||'{}')}catch(e){return {}}}
+  function save(){
+    const x={
+      mode:get('ttsMode')?.value||'auto',
+      english:get('englishVoice')?.value||'en-IN-Chirp3-HD-Achernar',
+      telugu:get('teluguVoice')?.value||'te-IN-Standard-A',
+      rate:get('speechRate')?.value||'1'
+    };
+    localStorage.setItem(KEY,JSON.stringify(x));
+    return x;
+  }
+  function option(sel,value,label){
+    const o=document.createElement('option');o.value=value;o.textContent=label;sel.appendChild(o);
+  }
+  function populate(){
+    const settings=load(), en=get('englishVoice'), te=get('teluguVoice');
+    if(!en||!te)return;
+    en.innerHTML='';te.innerHTML='';
+    CLOUD_EN.forEach(x=>option(en,x[0],x[1]));
+    CLOUD_TE.forEach(x=>option(te,x[0],x[1]));
+    option(en,'__browser_default__','Browser: Default English voice');
+    option(te,'__browser_default__','Browser: Default Telugu voice');
+
+    const voices=window.speechSynthesis?window.speechSynthesis.getVoices():[];
+    const seen=new Set();
+    voices.forEach(v=>{
+      const lang=(v.lang||'').toLowerCase();
+      const isEn=lang.startsWith('en');
+      const isTe=lang.startsWith('te');
+      if(isEn){
+        const val='browser::'+v.name;
+        if(!seen.has('e'+val)){option(en,val,'Browser: '+v.name+' ('+v.lang+')');seen.add('e'+val);}
+      }
+      if(isTe){
+        const val='browser::'+v.name;
+        if(!seen.has('t'+val)){option(te,val,'Browser: '+v.name+' ('+v.lang+')');seen.add('t'+val);}
+      }
+    });
+
+    if(get('ttsMode'))get('ttsMode').value=settings.mode||'auto';
+    en.value=settings.english||CLOUD_EN[0][0];
+    te.value=settings.telugu||'te-IN-Standard-A';
+    if(get('speechRate'))get('speechRate').value=settings.rate||'1';
+    save();
+  }
+
+  window.addEventListener('load',()=>{
+    populate();
+    if(window.speechSynthesis) window.speechSynthesis.onvoiceschanged=populate;
+    ['ttsMode','englishVoice','teluguVoice','speechRate'].forEach(id=>get(id)?.addEventListener('change',()=>{
+      const x=save();
+      sessionStorage.setItem(TTS_ENGLISH_VOICE_KEY,x.english);
+      sessionStorage.setItem(TTS_TELUGU_VOICE_KEY,x.telugu);
+      cloudFallbackForCycle=false;
+      updateTtsUi();
+    }));
+    get('saveTtsKey')?.addEventListener('click',save);
+  });
+
+  window.getVocabularyVoiceSettings=function(){
+    return save();
+  };
+
+  window.getSelectedBrowserVoice=function(lang){
+    const s=save();
+    const chosen=lang==='te'?s.telugu:s.english;
+    if(!chosen || !chosen.startsWith('browser::'))return null;
+    const name=chosen.slice('browser::'.length);
+    return (window.speechSynthesis?.getVoices()||[]).find(v=>v.name===name)||null;
+  };
+})();
+</script>
+
+<script src="student-progress.js"></script><script src="sync-config.js"></script><script src="student-auth.js"></script><script src="cloud-sync.js"></script>
+<script src="selection-helper.js"></script>
+</body>
+</html>
